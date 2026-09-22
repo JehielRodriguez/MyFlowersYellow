@@ -5,24 +5,24 @@ const TOTAL_FLOWERS = 72
 const FLOWER_INTERVAL = 85
 
 // ======================================
-// NOMBRE DEL CREADOR DE LA PÁGINA
-// Cambia solamente este texto.
-//
-// Ejemplos:
-// const CREATOR_NAME = 'Jehiel Jeremías Rodríguez Sarmiento'
+// CREADOR DE LA PÁGINA
 // ======================================
-
-const CREATOR_NAME = 'Jehiel Jeremías Rodríguez Sarmiento'
+const CREATOR_NAME =
+  'Jehiel Jeremias Rodriguez Sarmiento'
 
 function createFlowers(total) {
   return Array.from({ length: total }, (_, index) => {
     const progress = (index + 0.5) / total
 
     const radius = Math.sqrt(progress) * 35
-    const angle = index * 137.508 * (Math.PI / 180)
+    const angle =
+      index * 137.508 * (Math.PI / 180)
 
-    const jitterX = Math.sin(index * 13.37) * 1.6
-    const jitterY = Math.cos(index * 9.27) * 1.3
+    const jitterX =
+      Math.sin(index * 13.37) * 1.6
+
+    const jitterY =
+      Math.cos(index * 9.27) * 1.3
 
     const x =
       50 +
@@ -86,8 +86,11 @@ function App() {
   const [inputName, setInputName] = useState('')
   const [name, setName] = useState('')
 
-  const [started, setStarted] = useState(false)
-  const [ready, setReady] = useState(false)
+  const [started, setStarted] =
+    useState(false)
+
+  const [ready, setReady] =
+    useState(false)
 
   const [letterOpen, setLetterOpen] =
     useState(false)
@@ -134,8 +137,6 @@ function App() {
     }, animationTime)
   }
 
-  // Primer toque después de terminar el ramo.
-  // Muestra el sobre cerrado.
   const showEnvelope = () => {
     if (!ready) {
       return
@@ -148,7 +149,6 @@ function App() {
     setEnvelopeOpened(false)
   }
 
-  // Abre el sobre.
   const openEnvelope = (event) => {
     event.stopPropagation()
 
@@ -162,8 +162,6 @@ function App() {
     setEnvelopeOpened(true)
   }
 
-  // Cierra la carta suavemente y después
-  // regresa automáticamente al ramo.
   const closeEnvelope = (event) => {
     event.stopPropagation()
 
@@ -176,23 +174,23 @@ function App() {
 
     setIsClosing(true)
 
-    // Comienza la animación inversa.
+    // La hoja baja y el sobre
+    // comienza a cerrarse.
     setEnvelopeOpened(false)
 
-    // Cuando el sobre ya está cerrado,
-    // comienza a desaparecer la pantalla.
+    // Después cerramos visualmente
+    // toda la pantalla.
     setTimeout(() => {
       setFadeOut(true)
     }, 1650)
 
-    // Regresa al ramo.
+    // Finalmente regresamos al ramo.
     setTimeout(() => {
       setLetterOpen(false)
+      setEnvelopeOpened(false)
 
       setIsClosing(false)
       setFadeOut(false)
-
-      setEnvelopeOpened(false)
     }, 2200)
   }
 
@@ -237,11 +235,14 @@ function App() {
 
       <div className="site-signature">
         <span>By</span>
-        <strong>{CREATOR_NAME}</strong>
+
+        <strong>
+          {CREATOR_NAME}
+        </strong>
       </div>
 
       {/* =================================
-          PANTALLA INICIAL
+          PANTALLA PRINCIPAL
       ================================= */}
 
       {!started && (
@@ -322,11 +323,9 @@ function App() {
 
           <div className="bouquet">
             <div className="paper paper-left" />
-
             <div className="paper paper-left-2" />
 
             <div className="paper paper-right" />
-
             <div className="paper paper-right-2" />
 
             <div className="paper paper-center" />
@@ -399,7 +398,7 @@ function App() {
       ================================= */}
 
       {letterOpen && (
-        <div
+        <section
           className={`letter-overlay ${
             fadeOut
               ? 'closing'
@@ -411,7 +410,8 @@ function App() {
         >
           <div className="letter-background-light" />
 
-          {/* Nombre de la persona */}
+          {/* CABECERA INDEPENDIENTE
+              Ya no queda encima de la carta */}
 
           <header className="letter-title">
             <span>
@@ -423,172 +423,164 @@ function App() {
             </strong>
           </header>
 
-          {/* Sobre */}
+          {/* ÁREA FLEXIBLE DEL SOBRE */}
 
-          <div className="envelope-scene">
-            <div
-              className={`envelope ${
-                envelopeOpened
-                  ? 'opened'
-                  : ''
-              } ${
-                isClosing
-                  ? 'closing-envelope'
-                  : ''
-              }`}
-              onClick={openEnvelope}
-            >
-              <div className="envelope-back" />
-
-              {/* CARTA */}
-
-              <article
-                className="letter-paper"
-                onClick={closeEnvelope}
+          <div className="envelope-area">
+            <div className="envelope-scene">
+              <div
+                className={`envelope ${
+                  envelopeOpened
+                    ? 'opened'
+                    : ''
+                } ${
+                  isClosing
+                    ? 'closing-envelope'
+                    : ''
+                }`}
+                onClick={openEnvelope}
               >
-                <div className="letter-decoration">
-                  🌼
+                <div className="envelope-back" />
+
+                {/* =========================
+                    CARTA
+                ========================== */}
+
+                <article
+                  className="letter-paper"
+                  onClick={closeEnvelope}
+                >
+                  <div className="letter-decoration">
+                    🌼
+                  </div>
+
+                  <p className="letter-date">
+                    21 de septiembre de 2026
+                  </p>
+
+                  <h3>
+                    Para {name},
+                  </h3>
+
+                  <p>
+                    Hoy quiero regalarte este pequeño
+                    ramo de flores amarillas, aunque
+                    sea a través de una pantalla.
+                  </p>
+
+                  <p>
+                    Que cada flor represente un bonito
+                    deseo para ti: alegría,
+                    tranquilidad, cariño, nuevos
+                    sueños y muchísimas razones para
+                    sonreír.
+                  </p>
+
+                  <p>
+                    Espero que todo aquello que
+                    anhelas siga creciendo y
+                    floreciendo, y que nunca te
+                    falten personas, momentos y
+                    recuerdos que hagan tus días un
+                    poquito más especiales.
+                  </p>
+
+                  <p className="special-message">
+                    ¡Feliz día de las flores amarillas!
+                    <br />
+
+                    💛 Feliz 21-09-2026 💛
+                  </p>
+
+                  <p className="letter-ending">
+                    Con mucho cariño 🌼
+                  </p>
+
+                  <div className="close-letter-hint">
+                    Toca la carta para guardarla
+                  </div>
+                </article>
+
+                {/* PARTE FRONTAL */}
+
+                <div className="envelope-front">
+                  <div className="front-left" />
+                  <div className="front-right" />
+                  <div className="front-bottom" />
                 </div>
 
-                <p className="letter-date">
-                  21 de septiembre de 2026
-                </p>
+                {/* SOLAPA */}
 
-                <h3>
-                  Para {name},
-                </h3>
+                <div className="envelope-flap" />
 
-                <p>
-                  Hoy quiero regalarte este pequeño
-                  ramo de flores amarillas, aunque
-                  sea a través de una pantalla.
-                </p>
+                {/* SELLO */}
 
-                <p>
-                  Que cada flor represente un bonito
-                  deseo para ti: alegría,
-                  tranquilidad, cariño, nuevos
-                  sueños y muchísimas razones para
-                  sonreír.
-                </p>
-
-                <p>
-                  Espero que todo aquello que
-                  anhelas siga creciendo y
-                  floreciendo, y que nunca te
-                  falten personas, momentos y
-                  recuerdos que hagan tus días un
-                  poquito más especiales.
-                </p>
-
-                <p className="special-message">
-                  ¡Feliz día de las flores amarillas!
-                  <br />
-
-                  💛 Feliz 21-09-2026 💛
-                </p>
-
-                <p className="letter-ending">
-                  Con mucho cariño 🌼
-                </p>
-
-                <div className="close-letter-hint">
-                  Toca la carta para guardarla
+                <div className="wax-seal">
+                  <span>
+                    🌼
+                  </span>
                 </div>
-              </article>
-
-              {/* Parte frontal */}
-
-              <div className="envelope-front">
-                <div className="front-left" />
-
-                <div className="front-right" />
-
-                <div className="front-bottom" />
-              </div>
-
-              {/* Solapa */}
-
-              <div className="envelope-flap" />
-
-              {/* Sello */}
-
-              <div className="wax-seal">
-                <span>
-                  🌼
-                </span>
               </div>
             </div>
           </div>
 
           {/* =================================
-              SOBRE CERRADO
+              CONTROLES INFERIORES
           ================================= */}
 
-          {!envelopeOpened &&
-            !isClosing && (
-              <div className="open-envelope-message">
-                <div className="envelope-touch-icon">
-                  ☝🏻
+          <div className="letter-controls">
+            {!envelopeOpened &&
+              !isClosing && (
+                <div className="open-envelope-message">
+                  <div className="envelope-touch-icon">
+                    ☝🏻
+                  </div>
+
+                  <p>
+                    Toca el sobre para abrirlo
+                  </p>
+
+                  <span>
+                    Tu carta está esperando
+                  </span>
                 </div>
+              )}
 
-                <p>
-                  Toca el sobre para abrirlo
-                </p>
+            {envelopeOpened &&
+              !isClosing && (
+                <div className="letter-opened-message">
+                  <span>
+                    💛
+                  </span>
 
-                <span>
-                  Tu carta está esperando
-                </span>
-              </div>
+                  <p>
+                    Toca la carta para guardarla
+                  </p>
+                </div>
+              )}
+
+            {isClosing &&
+              !fadeOut && (
+                <div className="closing-message">
+                  <span>
+                    💛
+                  </span>
+
+                  <p>
+                    Guardando tu carta...
+                  </p>
+                </div>
+              )}
+
+            {!isClosing && (
+              <button
+                className="return-button"
+                onClick={returnToBouquet}
+              >
+                ← Volver al ramo
+              </button>
             )}
-
-          {/* =================================
-              CARTA ABIERTA
-          ================================= */}
-
-          {envelopeOpened &&
-            !isClosing && (
-              <div className="letter-opened-message">
-                <span>
-                  💛
-                </span>
-
-                <p>
-                  Toca la carta para guardarla
-                </p>
-              </div>
-            )}
-
-          {/* =================================
-              CERRANDO
-          ================================= */}
-
-          {isClosing &&
-            !fadeOut && (
-              <div className="closing-message">
-                <span>
-                  💛
-                </span>
-
-                <p>
-                  Guardando tu carta...
-                </p>
-              </div>
-            )}
-
-          {/* =================================
-              VOLVER
-          ================================= */}
-
-          {!isClosing && (
-            <button
-              className="return-button"
-              onClick={returnToBouquet}
-            >
-              ← Volver al ramo
-            </button>
-          )}
-        </div>
+          </div>
+        </section>
       )}
     </main>
   )
