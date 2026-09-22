@@ -6,50 +6,41 @@ const FLOWER_INTERVAL = 70
 const CREATOR_NAME = 'Jehiel'
 
 const FLOWER_RINGS = [
-  { count: 1, radius: 0, size: 64, layer: 'back' },
-  { count: 8, radius: 8.5, size: 60, layer: 'back' },
-  { count: 12, radius: 16, size: 56, layer: 'back' },
-  { count: 16, radius: 24, size: 52, layer: 'front' },
-  { count: 18, radius: 31.5, size: 48, layer: 'front' },
-  { count: 20, radius: 38, size: 44, layer: 'front' },
-]
-
-const STICKER_OPTIONS = [
   {
-    id: 'stitch',
-    src: '/stickers/stitch.png',
-    alt: 'Stitch',
+    count: 1,
+    radius: 0,
+    size: 64,
   },
   {
-    id: 'bear',
-    src: '/stickers/bear.png',
-    alt: 'Osito blanco',
-  },
-]
-
-const STICKER_POSITIONS = [
-  {
-    x: 50,
-    y: 41,
-    scale: 1,
-    rotation: -3,
+    count: 8,
+    radius: 8.5,
+    size: 60,
   },
   {
-    x: 42,
-    y: 42,
-    scale: 0.96,
-    rotation: -8,
+    count: 12,
+    radius: 16,
+    size: 56,
   },
   {
-    x: 58,
-    y: 42,
-    scale: 0.96,
-    rotation: 8,
+    count: 16,
+    radius: 24,
+    size: 52,
+  },
+  {
+    count: 18,
+    radius: 31.5,
+    size: 48,
+  },
+  {
+    count: 20,
+    radius: 38,
+    size: 44,
   },
 ]
 
 function createFlowers() {
   const flowers = []
+
   let index = 0
 
   FLOWER_RINGS.forEach((ring, ringIndex) => {
@@ -57,40 +48,62 @@ function createFlowers() {
       (ringIndex % 2 === 0 ? 0 : 10) *
       (Math.PI / 180)
 
-    for (let i = 0; i < ring.count; i += 1) {
+    for (
+      let i = 0;
+      i < ring.count;
+      i += 1
+    ) {
       const angle =
         angleOffset +
-        (i / ring.count) * Math.PI * 2
+        (i / ring.count) *
+          Math.PI *
+          2
 
       const jitterX =
-        Math.sin((i + 1) * 1.73 + ringIndex) * 0.9
+        Math.sin(
+          (i + 1) * 1.73 +
+            ringIndex
+        ) * 0.9
 
       const jitterY =
-        Math.cos((i + 1) * 1.91 + ringIndex) * 0.7
+        Math.cos(
+          (i + 1) * 1.91 +
+            ringIndex
+        ) * 0.7
 
       const x =
         50 +
-        Math.cos(angle) * ring.radius +
+        Math.cos(angle) *
+          ring.radius +
         jitterX
 
       const y =
         40.5 +
-        Math.sin(angle) * ring.radius * 0.78 +
+        Math.sin(angle) *
+          ring.radius *
+          0.78 +
         jitterY
 
       const size =
         ring.size +
-        ((i % 3) - 1) * 1.4
+        ((i % 3) - 1) *
+          1.4
 
       flowers.push({
         id: `${ringIndex}-${i}`,
         x,
         y,
         size,
-        delay: index * FLOWER_INTERVAL,
+
+        delay:
+          index *
+          FLOWER_INTERVAL,
+
         rotation:
-          ((i * 27 + ringIndex * 11) % 26) - 13,
-        layer: ring.layer,
+          ((i * 27 +
+            ringIndex * 11) %
+            26) -
+          13,
       })
 
       index += 1
@@ -98,23 +111,6 @@ function createFlowers() {
   })
 
   return flowers
-}
-
-function createRandomSticker() {
-  const randomCharacter =
-    STICKER_OPTIONS[
-      Math.floor(Math.random() * STICKER_OPTIONS.length)
-    ]
-
-  const randomPosition =
-    STICKER_POSITIONS[
-      Math.floor(Math.random() * STICKER_POSITIONS.length)
-    ]
-
-  return {
-    ...randomCharacter,
-    ...randomPosition,
-  }
 }
 
 function Rose({ flower }) {
@@ -150,46 +146,42 @@ function Rose({ flower }) {
 }
 
 function App() {
-  const [inputName, setInputName] = useState('')
-  const [name, setName] = useState('')
+  const [inputName, setInputName] =
+    useState('')
 
-  const [started, setStarted] = useState(false)
-  const [ready, setReady] = useState(false)
+  const [name, setName] =
+    useState('')
 
-  const [letterOpen, setLetterOpen] = useState(false)
-  const [envelopeOpened, setEnvelopeOpened] =
+  const [started, setStarted] =
     useState(false)
+
+  const [ready, setReady] =
+    useState(false)
+
+  const [letterOpen, setLetterOpen] =
+    useState(false)
+
+  const [
+    envelopeOpened,
+    setEnvelopeOpened,
+  ] = useState(false)
 
   const [isClosing, setIsClosing] =
     useState(false)
 
-  const [fadeOut, setFadeOut] = useState(false)
+  const [fadeOut, setFadeOut] =
+    useState(false)
 
-  const [surpriseSticker, setSurpriseSticker] =
-    useState(null)
-
-  const flowers = useMemo(() => createFlowers(), [])
-
-  const backFlowers = useMemo(
-    () =>
-      flowers.filter(
-        (flower) => flower.layer === 'back'
-      ),
-    [flowers]
-  )
-
-  const frontFlowers = useMemo(
-    () =>
-      flowers.filter(
-        (flower) => flower.layer === 'front'
-      ),
-    [flowers]
+  const flowers = useMemo(
+    () => createFlowers(),
+    []
   )
 
   const createBouquet = (event) => {
     event.preventDefault()
 
-    const cleanName = inputName.trim()
+    const cleanName =
+      inputName.trim()
 
     if (!cleanName) {
       return
@@ -206,14 +198,13 @@ function App() {
     setIsClosing(false)
     setFadeOut(false)
 
-    setSurpriseSticker(null)
-
     const animationTime =
-      flowers.length * FLOWER_INTERVAL + 700
+      flowers.length *
+        FLOWER_INTERVAL +
+      700
 
     setTimeout(() => {
       setReady(true)
-      setSurpriseSticker(createRandomSticker())
     }, animationTime)
   }
 
@@ -229,7 +220,9 @@ function App() {
     setEnvelopeOpened(false)
   }
 
-  const openEnvelope = (event) => {
+  const openEnvelope = (
+    event
+  ) => {
     event.stopPropagation()
 
     if (
@@ -242,7 +235,9 @@ function App() {
     setEnvelopeOpened(true)
   }
 
-  const closeEnvelope = (event) => {
+  const closeEnvelope = (
+    event
+  ) => {
     event.stopPropagation()
 
     if (
@@ -253,6 +248,7 @@ function App() {
     }
 
     setIsClosing(true)
+
     setEnvelopeOpened(false)
 
     setTimeout(() => {
@@ -261,13 +257,18 @@ function App() {
 
     setTimeout(() => {
       setLetterOpen(false)
+
       setEnvelopeOpened(false)
+
       setIsClosing(false)
+
       setFadeOut(false)
     }, 2200)
   }
 
-  const returnToBouquet = (event) => {
+  const returnToBouquet = (
+    event
+  ) => {
     event.stopPropagation()
 
     if (isClosing) {
@@ -275,9 +276,11 @@ function App() {
     }
 
     setLetterOpen(false)
+
     setEnvelopeOpened(false)
 
     setIsClosing(false)
+
     setFadeOut(false)
   }
 
@@ -285,29 +288,45 @@ function App() {
     event.stopPropagation()
 
     setStarted(false)
+
     setReady(false)
 
     setLetterOpen(false)
+
     setEnvelopeOpened(false)
 
     setIsClosing(false)
+
     setFadeOut(false)
 
-    setSurpriseSticker(null)
-
     setName('')
+
     setInputName('')
   }
 
   return (
     <main className="app">
       <div className="background-glow glow-1" />
+
       <div className="background-glow glow-2" />
 
+      {/* =========================
+          FIRMA DEL CREADOR
+      ========================== */}
+
       <div className="site-signature">
-        <span>By</span>
-        <strong>{CREATOR_NAME}</strong>
+        <span>
+          By
+        </span>
+
+        <strong>
+          {CREATOR_NAME}
+        </strong>
       </div>
+
+      {/* =========================
+          PANTALLA INICIAL
+      ========================== */}
 
       {!started && (
         <section className="welcome-screen">
@@ -322,15 +341,21 @@ function App() {
 
             <h1>
               Un ramo especial
-              <span>para ti</span>
+
+              <span>
+                para ti
+              </span>
             </h1>
 
             <p className="welcome-description">
-              Escribe tu nombre y deja que las
-              flores aparezcan una por una.
+              Escribe tu nombre y
+              deja que las flores
+              aparezcan una por una.
             </p>
 
-            <form onSubmit={createBouquet}>
+            <form
+              onSubmit={createBouquet}
+            >
               <label htmlFor="name">
                 ¿Cómo te llamas?
               </label>
@@ -341,7 +366,9 @@ function App() {
                 placeholder="Escribe tu nombre..."
                 value={inputName}
                 onChange={(event) =>
-                  setInputName(event.target.value)
+                  setInputName(
+                    event.target.value
+                  )
                 }
                 autoComplete="off"
                 maxLength={40}
@@ -349,74 +376,76 @@ function App() {
 
               <button type="submit">
                 Crear mi ramo
-                <span>🌼</span>
+
+                <span>
+                  🌼
+                </span>
               </button>
             </form>
           </div>
         </section>
       )}
 
+      {/* =========================
+          RAMO
+      ========================== */}
+
       {started && (
         <section
           className={`bouquet-screen ${
-            ready ? 'bouquet-ready' : ''
+            ready
+              ? 'bouquet-ready'
+              : ''
           }`}
           onClick={showEnvelope}
         >
           <div className="top-message">
-            <span>Para</span>
-            <h2>{name}</h2>
+            <span>
+              Para
+            </span>
+
+            <h2>
+              {name}
+            </h2>
           </div>
 
           <div className="bouquet">
             <div className="paper paper-left" />
+
             <div className="paper paper-left-2" />
+
             <div className="paper paper-right" />
+
             <div className="paper paper-right-2" />
+
             <div className="paper paper-center" />
 
             <div className="flower-shadow" />
 
-            <div className="flowers flowers-back">
-              {backFlowers.map((flower) => (
-                <Rose
-                  key={flower.id}
-                  flower={flower}
-                />
-              ))}
-            </div>
-
-            {ready && surpriseSticker && (
-              <div
-                className="bouquet-sticker"
-                style={{
-                  '--sticker-x': surpriseSticker.x,
-                  '--sticker-y': surpriseSticker.y,
-                  '--sticker-scale': surpriseSticker.scale,
-                  '--sticker-rotation': `${surpriseSticker.rotation}deg`,
-                }}
-              >
-                <img
-                  src={surpriseSticker.src}
-                  alt={surpriseSticker.alt}
-                />
-              </div>
-            )}
-
-            <div className="flowers flowers-front">
-              {frontFlowers.map((flower) => (
-                <Rose
-                  key={flower.id}
-                  flower={flower}
-                />
-              ))}
+            <div className="flowers">
+              {flowers.map(
+                (flower) => (
+                  <Rose
+                    key={flower.id}
+                    flower={flower}
+                  />
+                )
+              )}
             </div>
 
             <div className="bouquet-base">
               <div className="ribbon">
-                <span>Para</span>
-                <strong>{name}</strong>
-                <small>21 · 09 · 2026</small>
+                <span>
+                  Para
+                </span>
+
+                <strong>
+                  {name}
+                </strong>
+
+                <small>
+                  21 · 09 · 2026
+                </small>
               </div>
             </div>
           </div>
@@ -424,8 +453,10 @@ function App() {
           {!ready && (
             <div className="creating-text">
               <span />
+
               <p>
-                Preparando algo especial para ti...
+                Preparando algo
+                especial para ti...
               </p>
             </div>
           )}
@@ -455,10 +486,16 @@ function App() {
         </section>
       )}
 
+      {/* =========================
+          CARTA
+      ========================== */}
+
       {letterOpen && (
         <section
           className={`letter-overlay ${
-            fadeOut ? 'closing' : ''
+            fadeOut
+              ? 'closing'
+              : ''
           }`}
           onClick={(event) =>
             event.stopPropagation()
@@ -468,36 +505,46 @@ function App() {
 
           <header className="letter-title">
             <span>
-              Tengo una pequeña carta para
+              Tengo una pequeña
+              carta para
             </span>
 
-            <strong>{name}</strong>
+            <strong>
+              {name}
+            </strong>
           </header>
 
           <div className="envelope-area">
             <div className="envelope-scene">
               <div
                 className={`envelope ${
-                  envelopeOpened ? 'opened' : ''
+                  envelopeOpened
+                    ? 'opened'
+                    : ''
                 } ${
                   isClosing
                     ? 'closing-envelope'
                     : ''
                 }`}
-                onClick={openEnvelope}
+                onClick={
+                  openEnvelope
+                }
               >
                 <div className="envelope-back" />
 
                 <article
                   className="letter-paper"
-                  onClick={closeEnvelope}
+                  onClick={
+                    closeEnvelope
+                  }
                 >
                   <div className="letter-decoration">
                     🌼
                   </div>
 
                   <p className="letter-date">
-                    21 de septiembre de 2026
+                    21 de septiembre
+                    de 2026
                   </p>
 
                   <h3>
@@ -505,32 +552,47 @@ function App() {
                   </h3>
 
                   <p>
-                    Hoy quiero regalarte este pequeño
-                    ramo de flores amarillas, aunque
-                    sea a través de una pantalla.
+                    Hoy quiero
+                    regalarte este
+                    pequeño ramo de
+                    flores amarillas,
+                    aunque sea a través
+                    de una pantalla.
                   </p>
 
                   <p>
-                    Que cada flor represente un bonito
-                    deseo para ti: alegría,
-                    tranquilidad, cariño, nuevos
-                    sueños y muchísimas razones para
+                    Que cada flor
+                    represente un
+                    bonito deseo para
+                    ti: alegría,
+                    tranquilidad,
+                    cariño, nuevos
+                    sueños y muchísimas
+                    razones para
                     sonreír.
                   </p>
 
                   <p>
-                    Espero que todo aquello que
-                    anhelas siga creciendo y
-                    floreciendo, y que nunca te
-                    falten personas, momentos y
-                    recuerdos que hagan tus días un
-                    poquito más especiales.
+                    Espero que todo
+                    aquello que anhelas
+                    siga creciendo y
+                    floreciendo, y que
+                    nunca te falten
+                    personas, momentos
+                    y recuerdos que
+                    hagan tus días un
+                    poquito más
+                    especiales.
                   </p>
 
                   <p className="special-message">
-                    ¡Feliz día de las flores amarillas!
+                    ¡Feliz día de las
+                    flores amarillas!
+
                     <br />
-                    💛 Feliz 21-09-2026 💛
+
+                    💛 Feliz
+                    21-09-2026 💛
                   </p>
 
                   <p className="letter-ending">
@@ -538,20 +600,25 @@ function App() {
                   </p>
 
                   <div className="close-letter-hint">
-                    Toca la carta para guardarla
+                    Toca la carta para
+                    guardarla
                   </div>
                 </article>
 
                 <div className="envelope-front">
                   <div className="front-left" />
+
                   <div className="front-right" />
+
                   <div className="front-bottom" />
                 </div>
 
                 <div className="envelope-flap" />
 
                 <div className="wax-seal">
-                  <span>🌼</span>
+                  <span>
+                    🌼
+                  </span>
                 </div>
               </div>
             </div>
@@ -566,11 +633,13 @@ function App() {
                   </div>
 
                   <p>
-                    Toca el sobre para abrirlo
+                    Toca el sobre
+                    para abrirlo
                   </p>
 
                   <span>
-                    Tu carta está esperando
+                    Tu carta está
+                    esperando
                   </span>
                 </div>
               )}
@@ -578,9 +647,13 @@ function App() {
             {envelopeOpened &&
               !isClosing && (
                 <div className="letter-opened-message">
-                  <span>💛</span>
+                  <span>
+                    💛
+                  </span>
+
                   <p>
-                    Toca la carta para guardarla
+                    Toca la carta
+                    para guardarla
                   </p>
                 </div>
               )}
@@ -588,9 +661,13 @@ function App() {
             {isClosing &&
               !fadeOut && (
                 <div className="closing-message">
-                  <span>💛</span>
+                  <span>
+                    💛
+                  </span>
+
                   <p>
-                    Guardando tu carta...
+                    Guardando tu
+                    carta...
                   </p>
                 </div>
               )}
@@ -598,7 +675,9 @@ function App() {
             {!isClosing && (
               <button
                 className="return-button"
-                onClick={returnToBouquet}
+                onClick={
+                  returnToBouquet
+                }
               >
                 ← Volver al ramo
               </button>
