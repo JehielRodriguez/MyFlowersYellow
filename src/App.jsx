@@ -267,8 +267,7 @@ function App() {
             </h1>
 
             <p className="welcome-description">
-              Escribe tu nombre y deja que las flores
-              aparezcan una por una.
+              Ayúdanos a crear algo para ti 😊.
             </p>
 
             <form onSubmit={createBouquet}>
@@ -289,8 +288,8 @@ function App() {
               />
 
               <button type="submit">
-                Crear mi ramo
-                <span>🌼</span>
+                Crear
+                <span></span>
               </button>
             </form>
           </div>
@@ -330,7 +329,7 @@ function App() {
 
             <div className="bouquet-base">
               <div className="ribbon">
-                <span>Para</span>
+                <span></span>
                 <strong>{name}</strong>
                 <small>21 · 09 · 2026</small>
               </div>
@@ -433,13 +432,13 @@ function App() {
                   </p>
 
                   <p className="special-message">
-                    ¡Feliz día de las flores amarillas!
+                    ¡Álgo especial para ti!
                     <br />
-                    💛 Feliz 21-09-2026 💛
+                    Feliz Día
                   </p>
 
                   <p className="letter-ending">
-                    Con mucho cariño 🌼
+                  
                   </p>
 
                   <div className="close-letter-hint">
