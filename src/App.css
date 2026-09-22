@@ -1,0 +1,2485 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --yellow-1: #fff3a1;
+  --yellow-2: #ffd83d;
+  --yellow-3: #f6ae00;
+  --yellow-4: #d47700;
+
+  --cream: #fffaf0;
+
+  --envelope-1: #b8d1ce;
+  --envelope-2: #a2c2be;
+  --envelope-3: #87aaa6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ===================================
+   FONDO GENERAL
+=================================== */
+
+.app {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  color: white;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      #3b3328,
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #15120e,
+      #090806 60%,
+      #000
+    );
+}
+
+.app::before {
+  content: '';
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.15;
+
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 20px,
+      rgba(255, 255, 255, 0.05) 21px
+    );
+}
+
+.background-glow {
+  position: fixed;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  filter: blur(130px);
+
+  pointer-events: none;
+}
+
+.glow-1 {
+  top: -250px;
+  left: -150px;
+
+  background:
+    rgba(255, 193, 7, 0.13);
+}
+
+.glow-2 {
+  right: -220px;
+  bottom: -250px;
+
+  background:
+    rgba(255, 183, 0, 0.11);
+}
+
+/* ===================================
+   FIRMA DEL CREADOR
+=================================== */
+
+.site-signature {
+  position: fixed;
+
+  z-index: 3000;
+
+  right: 16px;
+  bottom: 12px;
+
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 4px;
+
+  padding:
+    5px
+    8px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  opacity: 0.7;
+
+  border-radius: 8px;
+
+  background:
+    rgba(0, 0, 0, 0.18);
+
+  backdrop-filter:
+    blur(5px);
+
+  -webkit-backdrop-filter:
+    blur(5px);
+}
+
+.site-signature span {
+  font-size: 8px;
+
+  font-weight: 300;
+
+  letter-spacing: 1px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+}
+
+.site-signature strong {
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  font-style: italic;
+
+  letter-spacing: 0.4px;
+
+  color:
+    rgba(255, 211, 67, 0.9);
+}
+
+/* ===================================
+   PANTALLA INICIAL
+=================================== */
+
+.welcome-screen {
+  min-height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  padding:
+    30px
+    20px;
+}
+
+.welcome-card {
+  width:
+    min(
+      500px,
+      100%
+    );
+
+  padding:
+    54px
+    42px
+    45px;
+
+  text-align: center;
+
+  border:
+    1px solid
+    rgba(255, 213, 85, 0.23);
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  backdrop-filter:
+    blur(14px);
+
+  box-shadow:
+    0 40px 100px
+    rgba(0, 0, 0, 0.55),
+    inset 0 1px
+    rgba(255, 255, 255, 0.1);
+
+  animation:
+    welcomeIn
+    1s
+    ease
+    forwards;
+}
+
+@keyframes welcomeIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+.small-flower {
+  width: 70px;
+  height: 70px;
+
+  display: grid;
+  place-items: center;
+
+  margin:
+    0
+    auto
+    20px;
+
+  font-size: 38px;
+
+  border:
+    1px solid
+    rgba(255, 208, 61, 0.3);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 194, 35, 0.07);
+}
+
+.welcome-small {
+  margin:
+    0
+    0
+    10px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 5px;
+
+  color: #ffd967;
+}
+
+.welcome-card h1 {
+  margin: 0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size:
+    clamp(
+      48px,
+      7vw,
+      68px
+    );
+
+  font-weight: 500;
+
+  line-height: 0.9;
+}
+
+.welcome-card h1 span {
+  display: block;
+
+  margin-top: 9px;
+
+  font-style: italic;
+
+  color: #f9c638;
+}
+
+.welcome-description {
+  max-width: 370px;
+
+  margin:
+    27px
+    auto
+    34px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 300;
+
+  line-height: 1.8;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+}
+
+.welcome-card form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.welcome-card label {
+  text-align: left;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255, 255, 255, 0.62);
+}
+
+.welcome-card input {
+  width: 100%;
+
+  padding:
+    17px
+    18px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
+
+  outline: none;
+
+  border-radius: 12px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 14px;
+
+  color: white;
+
+  background:
+    rgba(0, 0, 0, 0.28);
+
+  transition: 0.3s;
+}
+
+.welcome-card input:focus {
+  border-color:
+    rgba(255, 205, 54, 0.65);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(255, 195, 18, 0.07);
+}
+
+.welcome-card input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.28);
+}
+
+.welcome-card button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 8px;
+
+  padding: 17px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #1a1200;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe369,
+      #f3af08
+    );
+
+  box-shadow:
+    0 15px 35px
+    rgba(230, 160, 0, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.welcome-card button:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 18px 45px
+    rgba(230, 160, 0, 0.3);
+}
+
+/* ===================================
+   PANTALLA DEL RAMO
+=================================== */
+
+.bouquet-screen {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    30px
+    20px
+    50px;
+
+  overflow: hidden;
+}
+
+.top-message {
+  position: relative;
+
+  z-index: 20;
+
+  margin-bottom: -15px;
+
+  text-align: center;
+
+  animation:
+    topMessageIn
+    1s
+    ease
+    both;
+}
+
+.top-message span {
+  display: block;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 5px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+}
+
+.top-message h2 {
+  margin:
+    3px
+    0
+    0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size:
+    clamp(
+      39px,
+      7vw,
+      62px
+    );
+
+  font-weight: 500;
+
+  font-style: italic;
+
+  color: #ffd343;
+}
+
+@keyframes topMessageIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* ===================================
+   RAMO
+=================================== */
+
+.bouquet {
+  position: relative;
+
+  width:
+    min(
+      700px,
+      95vw
+    );
+
+  aspect-ratio:
+    1 / 0.96;
+
+  margin:
+    0
+    auto;
+}
+
+.paper {
+  position: absolute;
+
+  z-index: 1;
+
+  left: 50%;
+  top: 49%;
+
+  width: 72%;
+  height: 76%;
+
+  transform-origin:
+    bottom center;
+
+  background:
+    linear-gradient(
+      140deg,
+      #252525,
+      #090909 55%,
+      #1b1b1b
+    );
+
+  box-shadow:
+    0 30px 60px
+    rgba(0, 0, 0, 0.55);
+
+  clip-path:
+    polygon(
+      50% 0,
+      100% 30%,
+      84% 100%,
+      18% 100%,
+      0 28%
+    );
+
+  opacity: 0;
+
+  animation:
+    paperAppear
+    0.8s
+    ease
+    forwards;
+}
+
+.paper-left {
+  transform:
+    translate(-57%, -49%)
+    rotate(-22deg);
+
+  animation-delay: 0.1s;
+}
+
+.paper-left-2 {
+  transform:
+    translate(-61%, -48%)
+    rotate(-10deg);
+
+  animation-delay: 0.2s;
+}
+
+.paper-right {
+  transform:
+    translate(-43%, -49%)
+    rotate(22deg);
+
+  animation-delay: 0.25s;
+}
+
+.paper-right-2 {
+  transform:
+    translate(-39%, -48%)
+    rotate(10deg);
+
+  animation-delay: 0.35s;
+}
+
+.paper-center {
+  transform:
+    translate(-50%, -46%);
+
+  animation-delay: 0.4s;
+}
+
+@keyframes paperAppear {
+  from {
+    opacity: 0;
+    scale: 0.85;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.flower-shadow {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 50%;
+  top: 43%;
+
+  width: 75%;
+  height: 55%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.6);
+
+  filter: blur(25px);
+}
+
+.flowers {
+  position: absolute;
+
+  z-index: 5;
+
+  inset: 0;
+}
+
+/* ===================================
+   ROSAS
+=================================== */
+
+.rose {
+  position: absolute;
+
+  left:
+    calc(var(--x) * 1%);
+
+  top:
+    calc(var(--y) * 1%);
+
+  width:
+    var(--size);
+
+  aspect-ratio: 1;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0)
+    rotate(var(--rotation));
+
+  animation:
+    growFlower
+    0.75s
+    cubic-bezier(
+      0.18,
+      0.89,
+      0.32,
+      1.35
+    )
+    var(--delay)
+    forwards;
+}
+
+@keyframes growFlower {
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0)
+      rotate(var(--rotation));
+  }
+
+  65% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.12)
+      rotate(var(--rotation));
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1)
+      rotate(var(--rotation));
+  }
+}
+
+.rose-head {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  filter:
+    drop-shadow(
+      2px
+      5px
+      4px
+      rgba(105, 60, 0, 0.3)
+    );
+}
+
+.petal,
+.inner {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  display: block;
+
+  transform-origin: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffe55b 2%,
+      #ffc21b 34%,
+      #ef9d00 72%,
+      #ce7000 100%
+    );
+
+  box-shadow:
+    inset 2px 2px 4px
+    rgba(255, 255, 255, 0.28),
+
+    inset -2px -4px 6px
+    rgba(149, 69, 0, 0.16);
+}
+
+.petal {
+  width: 58%;
+  height: 70%;
+
+  border-radius:
+    55%
+    45%
+    58%
+    42%;
+}
+
+.petal-1 {
+  transform:
+    translate(-50%, -66%)
+    rotate(0deg);
+}
+
+.petal-2 {
+  transform:
+    translate(-25%, -57%)
+    rotate(45deg);
+}
+
+.petal-3 {
+  transform:
+    translate(-14%, -31%)
+    rotate(90deg);
+}
+
+.petal-4 {
+  transform:
+    translate(-27%, -11%)
+    rotate(135deg);
+}
+
+.petal-5 {
+  transform:
+    translate(-50%, -4%)
+    rotate(180deg);
+}
+
+.petal-6 {
+  transform:
+    translate(-75%, -15%)
+    rotate(225deg);
+}
+
+.petal-7 {
+  transform:
+    translate(-87%, -40%)
+    rotate(270deg);
+}
+
+.petal-8 {
+  transform:
+    translate(-74%, -61%)
+    rotate(315deg);
+}
+
+.inner {
+  width: 39%;
+  height: 44%;
+
+  border-radius:
+    62%
+    38%
+    60%
+    40%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffdb37,
+      #f1a000 62%,
+      #b96400
+    );
+}
+
+.inner-1 {
+  transform:
+    translate(-50%, -67%)
+    rotate(25deg);
+}
+
+.inner-2 {
+  transform:
+    translate(-25%, -40%)
+    rotate(145deg);
+}
+
+.inner-3 {
+  transform:
+    translate(-71%, -36%)
+    rotate(255deg);
+}
+
+.rose-core {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 20%;
+
+  aspect-ratio: 1;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #ffd42a,
+      #e78e00 60%,
+      #984800
+    );
+
+  box-shadow:
+    0 0 0 3px
+    rgba(239, 157, 0, 0.45);
+}
+
+/* ===================================
+   CINTA
+=================================== */
+
+.bouquet-base {
+  position: absolute;
+
+  z-index: 9;
+
+  left: 50%;
+  bottom: 6%;
+
+  transform:
+    translateX(-50%);
+
+  opacity: 0;
+
+  animation:
+    baseAppear
+    1s
+    5.8s
+    ease
+    forwards;
+}
+
+@keyframes baseAppear {
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(0);
+  }
+}
+
+.ribbon {
+  position: relative;
+
+  min-width: 190px;
+
+  padding:
+    11px
+    30px;
+
+  text-align: center;
+
+  border-radius: 4px;
+
+  color: #17120a;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f8d879,
+      #e4b74e
+    );
+
+  box-shadow:
+    0 8px 25px
+    rgba(0, 0, 0, 0.35);
+}
+
+.ribbon::before,
+.ribbon::after {
+  content: '';
+
+  position: absolute;
+
+  top: 50%;
+
+  width: 52px;
+  height: 80%;
+
+  transform:
+    translateY(-50%);
+
+  background: #be8e31;
+
+  z-index: -1;
+}
+
+.ribbon::before {
+  right:
+    calc(100% - 8px);
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 8%,
+      80% 50%,
+      100% 92%,
+      0 100%
+    );
+}
+
+.ribbon::after {
+  left:
+    calc(100% - 8px);
+
+  clip-path:
+    polygon(
+      100% 0,
+      0 8%,
+      20% 50%,
+      0 92%,
+      100% 100%
+    );
+}
+
+.ribbon span {
+  display: block;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.ribbon strong {
+  display: block;
+
+  margin:
+    1px
+    0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 23px;
+
+  font-style: italic;
+}
+
+.ribbon small {
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+}
+
+/* ===================================
+   CREANDO RAMO
+=================================== */
+
+.creating-text {
+  position: relative;
+
+  z-index: 10;
+
+  margin-top: -15px;
+
+  text-align: center;
+}
+
+.creating-text > span {
+  display: block;
+
+  width: 130px;
+  height: 2px;
+
+  margin:
+    0
+    auto
+    14px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+}
+
+.creating-text > span::before {
+  content: '';
+
+  display: block;
+
+  width: 40%;
+  height: 100%;
+
+  background: #ffc926;
+
+  animation:
+    loading
+    1.3s
+    linear
+    infinite;
+}
+
+@keyframes loading {
+  from {
+    transform:
+      translateX(-110%);
+  }
+
+  to {
+    transform:
+      translateX(350%);
+  }
+}
+
+.creating-text p {
+  margin: 0;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 1.8px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+}
+
+/* ===================================
+   TOCAR PANTALLA
+=================================== */
+
+.touch-message {
+  position: relative;
+
+  z-index: 15;
+
+  margin-top: -18px;
+
+  text-align: center;
+
+  opacity: 0;
+
+  animation:
+    touchAppear
+    1s
+    ease
+    forwards;
+}
+
+@keyframes touchAppear {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+.touch-icon {
+  margin-bottom: 5px;
+
+  font-size: 29px;
+
+  animation:
+    touchBounce
+    1.4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes touchBounce {
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-7px);
+  }
+}
+
+.touch-message p {
+  margin: 0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 25px;
+
+  font-style: italic;
+
+  color: #ffdb52;
+}
+
+.touch-message span {
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255, 255, 255, 0.43);
+}
+
+.bouquet-ready {
+  cursor: pointer;
+}
+
+.restart-button {
+  position: absolute;
+
+  z-index: 30;
+
+  right: 25px;
+  top: 25px;
+
+  padding:
+    10px
+    15px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 50px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 10px;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  background:
+    rgba(255, 255, 255, 0.04);
+}
+
+/* ===================================
+   PANTALLA DEL SOBRE
+=================================== */
+
+.letter-overlay {
+  position: fixed;
+
+  z-index: 1000;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    100px
+    20px
+    25px;
+
+  overflow: hidden;
+
+  opacity: 1;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      #483a27,
+      #17120d 60%,
+      #080604
+    );
+
+  animation:
+    overlayIn
+    0.7s
+    ease
+    both;
+
+  transition:
+    opacity
+    0.55s
+    ease;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.letter-overlay.closing {
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.letter-background-light {
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 205, 90, 0.11);
+
+  filter: blur(100px);
+
+  pointer-events: none;
+}
+
+/* ===================================
+   NOMBRE FIJO
+=================================== */
+
+.letter-title {
+  position: fixed;
+
+  z-index: 1500;
+
+  top: 14px;
+  left: 50%;
+
+  width:
+    min(
+      600px,
+      95vw
+    );
+
+  padding:
+    8px
+    15px
+    12px;
+
+  transform:
+    translateX(-50%);
+
+  text-align: center;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(14, 10, 7, 0.85),
+      rgba(14, 10, 7, 0)
+    );
+}
+
+.letter-title span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+}
+
+.letter-title strong {
+  display: block;
+
+  margin: 0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size:
+    clamp(
+      30px,
+      5vw,
+      40px
+    );
+
+  line-height: 1;
+
+  font-style: italic;
+
+  font-weight: 500;
+
+  color: #ffd34c;
+
+  text-shadow:
+    0 4px 18px
+    rgba(0, 0, 0, 0.8);
+}
+
+/* ===================================
+   ESCENA DEL SOBRE
+=================================== */
+
+.envelope-scene {
+  position: relative;
+
+  width:
+    min(
+      580px,
+      94vw
+    );
+
+  height:
+    min(
+      590px,
+      calc(100vh - 170px)
+    );
+
+  min-height: 430px;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  perspective: 1400px;
+}
+
+.envelope {
+  position: relative;
+
+  width:
+    min(
+      500px,
+      88vw
+    );
+
+  height: 300px;
+
+  margin-bottom: 25px;
+
+  cursor: pointer;
+
+  transition:
+    transform
+    0.3s
+    ease;
+}
+
+.envelope:not(.opened):not(.closing-envelope) {
+  animation:
+    envelopeWaiting
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+@keyframes envelopeWaiting {
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-6px);
+  }
+}
+
+.envelope.opened {
+  animation: none;
+
+  cursor: default;
+}
+
+.envelope.closing-envelope {
+  animation: none;
+
+  cursor: default;
+
+  pointer-events: none;
+}
+
+.envelope-back {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #b8d0cd,
+      #8eb2ae
+    );
+
+  box-shadow:
+    0 35px 80px
+    rgba(0, 0, 0, 0.52);
+}
+
+/* ===================================
+   CARTA
+=================================== */
+
+.letter-paper {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 50%;
+  bottom: 25px;
+
+  width: 88%;
+
+  max-height:
+    min(
+      480px,
+      calc(100vh - 230px)
+    );
+
+  padding:
+    38px
+    40px
+    45px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior: contain;
+
+  transform:
+    translateX(-50%)
+    translateY(68%);
+
+  border-radius: 4px;
+
+  color: #45382d;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(176, 131, 78, 0.04),
+      transparent 20%,
+      transparent 80%,
+      rgba(176, 131, 78, 0.04)
+    ),
+    #fffaf0;
+
+  box-shadow:
+    0 20px 55px
+    rgba(0, 0, 0, 0.3);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(145, 110, 65, 0.4)
+    transparent;
+
+  transition:
+    transform
+      0.9s
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      ),
+
+    opacity
+      0.4s
+      ease;
+}
+
+.envelope.opened .letter-paper {
+  transform:
+    translateX(-50%)
+    translateY(-16%);
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  cursor: pointer;
+
+  transition-delay:
+    0.65s,
+    0.65s;
+}
+
+.letter-paper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.letter-paper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.letter-paper::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+
+  background:
+    rgba(145, 110, 65, 0.35);
+}
+
+.letter-paper::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(145, 110, 65, 0.55);
+}
+
+/* ===================================
+   CONTENIDO CARTA
+=================================== */
+
+.letter-decoration {
+  margin-bottom: 6px;
+
+  text-align: center;
+
+  font-size: 28px;
+}
+
+.letter-date {
+  margin:
+    0
+    0
+    25px !important;
+
+  text-align: center;
+
+  font-family:
+    'Montserrat',
+    sans-serif !important;
+
+  font-size:
+    9px !important;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color:
+    #a58d72 !important;
+}
+
+.letter-paper h3 {
+  margin:
+    0
+    0
+    20px;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 32px;
+
+  font-style: italic;
+
+  font-weight: 600;
+
+  color: #7f6647;
+}
+
+.letter-paper p {
+  margin:
+    0
+    0
+    15px;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 18px;
+
+  line-height: 1.5;
+}
+
+.special-message {
+  margin-top:
+    25px !important;
+
+  text-align: center;
+
+  font-size:
+    21px !important;
+
+  font-weight: 600;
+
+  color: #a77500;
+}
+
+.letter-ending {
+  margin-top:
+    28px !important;
+
+  text-align: right;
+
+  font-style: italic;
+
+  color: #aa7f21;
+}
+
+.close-letter-hint {
+  margin-top: 28px;
+
+  padding-top: 15px;
+
+  border-top:
+    1px solid
+    rgba(143, 110, 71, 0.15);
+
+  text-align: center;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 1.6px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(100, 75, 50, 0.45);
+}
+
+/* ===================================
+   FRONTAL SOBRE
+=================================== */
+
+.envelope-front {
+  position: absolute;
+
+  z-index: 4;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.front-left {
+  position: absolute;
+
+  inset: 0;
+
+  clip-path:
+    polygon(
+      0 0,
+      56% 60%,
+      0 100%
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      #a7c5c1,
+      #86aaa6
+    );
+}
+
+.front-right {
+  position: absolute;
+
+  inset: 0;
+
+  clip-path:
+    polygon(
+      100% 0,
+      44% 60%,
+      100% 100%
+    );
+
+  background:
+    linear-gradient(
+      220deg,
+      #a9c7c3,
+      #88aba7
+    );
+}
+
+.front-bottom {
+  position: absolute;
+
+  inset: 0;
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 45%,
+      100% 100%
+    );
+
+  background:
+    linear-gradient(
+      to top,
+      #93b4b0,
+      #b2cdca
+    );
+}
+
+/* ===================================
+   SOLAPA
+=================================== */
+
+.envelope-flap {
+  position: absolute;
+
+  z-index: 6;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 64%;
+
+  transform-origin:
+    top center;
+
+  transform:
+    rotateX(0deg);
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  background:
+    linear-gradient(
+      165deg,
+      #b8d1ce,
+      #91b5b1
+    );
+
+  transition:
+    transform
+    0.75s
+    ease
+    0.75s;
+}
+
+.envelope.opened .envelope-flap {
+  z-index: 1;
+
+  transform:
+    rotateX(180deg);
+
+  transition-delay: 0.2s;
+}
+
+/* ===================================
+   SELLO
+=================================== */
+
+.wax-seal {
+  position: absolute;
+
+  z-index: 8;
+
+  left: 50%;
+  top: 44%;
+
+  width: 58px;
+  height: 58px;
+
+  display: grid;
+  place-items: center;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+
+  border-radius: 50%;
+
+  font-size: 24px;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #b58454,
+      #8b5c35 57%,
+      #60381e
+    );
+
+  box-shadow:
+    0 4px 12px
+    rgba(0, 0, 0, 0.35),
+
+    inset
+    2px
+    2px
+    4px
+    rgba(255, 255, 255, 0.17);
+
+  opacity: 1;
+
+  transition:
+    opacity
+      0.3s
+      ease
+      1.35s,
+
+    transform
+      0.3s
+      ease
+      1.35s;
+}
+
+.envelope.opened .wax-seal {
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.6);
+
+  transition-delay: 0s;
+}
+
+/* ===================================
+   MENSAJE ABRIR
+=================================== */
+
+.open-envelope-message {
+  position: relative;
+
+  z-index: 30;
+
+  margin-top: 0;
+
+  text-align: center;
+
+  animation:
+    openMessageIn
+    0.8s
+    0.4s
+    both;
+}
+
+@keyframes openMessageIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+.envelope-touch-icon {
+  margin-bottom: 2px;
+
+  font-size: 25px;
+
+  animation:
+    envelopeTouch
+    1.3s
+    ease-in-out
+    infinite;
+}
+
+@keyframes envelopeTouch {
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-6px);
+  }
+}
+
+.open-envelope-message p {
+  margin: 0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 23px;
+
+  font-style: italic;
+
+  color: #ffd657;
+}
+
+.open-envelope-message span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+}
+
+/* ===================================
+   CARTA ABIERTA
+=================================== */
+
+.letter-opened-message {
+  position: relative;
+
+  z-index: 30;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 2px;
+
+  min-height: 43px;
+
+  margin-top: 0;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+.letter-opened-message span {
+  font-size: 18px;
+
+  animation:
+    littleHeart
+    1.5s
+    ease-in-out
+    infinite;
+}
+
+.letter-opened-message p {
+  margin: 0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 16px;
+
+  font-style: italic;
+
+  color:
+    rgba(255, 218, 90, 0.75);
+}
+
+@keyframes littleHeart {
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.15);
+  }
+}
+
+/* ===================================
+   CERRANDO
+=================================== */
+
+.closing-message {
+  position: relative;
+
+  z-index: 30;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  min-height: 43px;
+
+  margin-top: 0;
+
+  text-align: center;
+
+  pointer-events: none;
+
+  animation:
+    closingMessageIn
+    0.4s
+    ease
+    both;
+}
+
+.closing-message span {
+  font-size: 18px;
+
+  animation:
+    littleHeart
+    1.2s
+    ease-in-out
+    infinite;
+}
+
+.closing-message p {
+  margin: 0;
+
+  font-family:
+    'Cormorant Garamond',
+    serif;
+
+  font-size: 16px;
+
+  font-style: italic;
+
+  color:
+    rgba(255, 218, 90, 0.75);
+}
+
+@keyframes closingMessageIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   VOLVER
+=================================== */
+
+.return-button {
+  position: relative;
+
+  z-index: 50;
+
+  margin-top: 8px;
+
+  padding:
+    11px
+    20px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 30px;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+
+  color:
+    rgba(255, 255, 255, 0.68);
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  transition:
+    background
+    0.25s
+    ease;
+}
+
+.return-button:hover {
+  background:
+    rgba(255, 255, 255, 0.12);
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width: 650px) {
+  .welcome-card {
+    padding:
+      42px
+      23px
+      35px;
+  }
+
+  .bouquet-screen {
+    padding:
+      45px
+      10px
+      45px;
+  }
+
+  .bouquet {
+    width: 100vw;
+
+    max-width: 520px;
+
+    margin-top: 10px;
+  }
+
+  .rose {
+    width:
+      calc(var(--size) * 0.78);
+  }
+
+  .restart-button {
+    top: 12px;
+    right: 12px;
+
+    padding:
+      8px
+      11px;
+
+    font-size: 8px;
+  }
+
+  .top-message {
+    margin-bottom: -5px;
+  }
+
+  .ribbon {
+    min-width: 155px;
+
+    padding:
+      8px
+      18px;
+  }
+
+  .ribbon strong {
+    font-size: 19px;
+  }
+
+  .letter-title {
+    top: 8px;
+
+    padding:
+      5px
+      10px
+      10px;
+  }
+
+  .letter-title strong {
+    font-size: 30px;
+  }
+
+  .letter-overlay {
+    padding:
+      82px
+      8px
+      15px;
+  }
+
+  .envelope-scene {
+    width: 100%;
+
+    height:
+      calc(100vh - 160px);
+
+    min-height: 410px;
+  }
+
+  .envelope {
+    width: 90vw;
+
+    height: 235px;
+
+    margin-bottom: 55px;
+  }
+
+  .letter-paper {
+    width: 92%;
+
+    max-height:
+      calc(100vh - 200px);
+
+    padding:
+      30px
+      24px
+      40px;
+  }
+
+  .envelope.opened .letter-paper {
+    transform:
+      translateX(-50%)
+      translateY(-18%);
+  }
+
+  .letter-paper h3 {
+    font-size: 28px;
+  }
+
+  .letter-paper p {
+    font-size: 16px;
+  }
+
+  .special-message {
+    font-size:
+      18px !important;
+  }
+
+  .open-envelope-message p {
+    font-size: 20px;
+  }
+
+  .return-button {
+    margin-top: 2px;
+  }
+
+  /* Firma más pequeña en celular */
+
+  .site-signature {
+    right: 10px;
+    bottom: 8px;
+
+    padding:
+      4px
+      6px;
+  }
+
+  .site-signature span {
+    font-size: 7px;
+  }
+
+  .site-signature strong {
+    font-size: 11px;
+  }
+}
+
+/* ===================================
+   PANTALLAS BAJAS
+=================================== */
+
+@media (max-height: 700px) {
+  .bouquet {
+    width:
+      min(
+        570px,
+        85vh
+      );
+  }
+
+  .top-message h2 {
+    font-size: 40px;
+  }
+
+  .letter-title {
+    top: 4px;
+  }
+
+  .letter-title strong {
+    font-size: 28px;
+  }
+
+  .letter-overlay {
+    padding-top: 70px;
+  }
+
+  .envelope-scene {
+    height:
+      calc(100vh - 135px);
+
+    min-height: 390px;
+  }
+
+  .envelope {
+    height: 240px;
+
+    margin-bottom: 40px;
+  }
+
+  .letter-paper {
+    max-height:
+      calc(100vh - 175px);
+
+    padding:
+      28px
+      35px
+      38px;
+  }
+
+  .envelope.opened .letter-paper {
+    transform:
+      translateX(-50%)
+      translateY(-11%);
+  }
+}
