@@ -1,24 +1,29 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 
-const FLOWER_INTERVAL = 90
+const FLOWER_INTERVAL = 85
 const CREATOR_NAME = 'Jehiel'
 
 const FLOWER_RINGS = [
-  { count: 1, rx: 0, ry: 0, size: 60 },
-  { count: 6, rx: 10, ry: 7, size: 58 },
-  { count: 10, rx: 19, ry: 13, size: 56 },
-  { count: 14, rx: 29, ry: 19, size: 54 },
-  { count: 18, rx: 38, ry: 25, size: 52 },
-  { count: 22, rx: 46, ry: 31, size: 50 },
+  { count: 1, radius: 0, size: 62 },
+  { count: 7, radius: 9, size: 60 },
+  { count: 12, radius: 17, size: 58 },
+  { count: 18, radius: 25, size: 56 },
+  { count: 22, radius: 32, size: 54 },
+  { count: 26, radius: 39, size: 52 },
+  { count: 28, radius: 45, size: 50 },
 ]
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value))
+}
 
 function createFlowers() {
   const flowers = []
   let order = 0
 
   const centerX = 50
-  const centerY = 39
+  const centerY = 40
 
   FLOWER_RINGS.forEach((ring, ringIndex) => {
     if (ring.count === 1) {
@@ -29,43 +34,50 @@ function createFlowers() {
         size: ring.size,
         delay: order * FLOWER_INTERVAL,
         rotation: 0,
-        stemLength: 140,
+        stemLength: 132,
         stemLean: 0,
-        zIndex: 100,
+        zIndex: 300,
       })
       order += 1
       return
     }
 
-    const angleOffset = ringIndex % 2 === 0 ? -Math.PI / 2 : -Math.PI / 2 + 0.14
+    const angleOffset =
+      -Math.PI / 2 + (ringIndex % 2 === 0 ? 0 : 0.1)
 
     for (let i = 0; i < ring.count; i += 1) {
       const angle =
         angleOffset + (i / ring.count) * Math.PI * 2
 
       const jitterX =
-        Math.sin((ringIndex + 1) * 0.9 + i * 0.77) * 0.7
+        Math.sin((ringIndex + 1) * 1.17 + i * 0.81) * 0.65
 
       const jitterY =
-        Math.cos((ringIndex + 1) * 0.75 + i * 0.58) * 0.55
+        Math.cos((ringIndex + 1) * 0.88 + i * 0.67) * 0.55
 
       const x =
-        centerX + Math.cos(angle) * ring.rx + jitterX
+        centerX + Math.cos(angle) * ring.radius + jitterX
 
       const y =
-        centerY + Math.sin(angle) * ring.ry + jitterY
+        centerY + Math.sin(angle) * ring.radius + jitterY
 
       const size =
         ring.size + (((i + ringIndex) % 3) - 1) * 1.1
 
       const rotation =
-        (((i * 13 + ringIndex * 7) % 18) - 9)
+        ((i * 11 + ringIndex * 9) % 20) - 10
 
-      const stemLength =
-        145 + ringIndex * 6 + Math.max(0, y - centerY) * 1.4
+      const stemLength = clamp(
+        138 - (y - centerY) * 2.25,
+        52,
+        142,
+      )
 
-      const stemLean =
-        Math.max(-10, Math.min(10, (x - centerX) * 0.32))
+      const stemLean = clamp(
+        (x - centerX) * 0.3,
+        -12,
+        12,
+      )
 
       flowers.push({
         id: `ring-${ringIndex}-${i}`,
@@ -76,7 +88,7 @@ function createFlowers() {
         rotation,
         stemLength,
         stemLean,
-        zIndex: 100 - ringIndex,
+        zIndex: Math.round(100 + y * 3),
       })
 
       order += 1
@@ -156,7 +168,6 @@ function App() {
 
     setLetterOpen(false)
     setEnvelopeOpened(false)
-
     setIsClosing(false)
     setFadeOut(false)
 
@@ -392,9 +403,7 @@ function App() {
                     21 de septiembre de 2026
                   </p>
 
-                  <h3>
-                    Para {name},
-                  </h3>
+                  <h3>Para {name},</h3>
 
                   <p>
                     Hoy quiero regalarte este pequeño

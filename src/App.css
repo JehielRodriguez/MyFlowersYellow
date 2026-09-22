@@ -1,1811 +1,514 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
-
-:root {
-  --yellow-1: #fff3a1;
-  --yellow-2: #ffd83d;
-  --yellow-3: #f6ae00;
-  --yellow-4: #d47700;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100%;
-  background: #090806;
-}
-
-body {
-  width: 100%;
-  min-width: 320px;
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin: 0;
-  overflow-x: hidden;
-  background: #090806;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.app {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow: hidden;
-  color: white;
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      #3b3328,
-      transparent 35%
-    ),
-    linear-gradient(
-      145deg,
-      #15120e,
-      #090806 60%,
-      #000
-    );
-}
-
-.app::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.15;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 20px,
-      rgba(255, 255, 255, 0.05) 21px
-    );
-}
-
-.background-glow {
-  position: fixed;
-  width: min(500px, 80vw);
-  height: min(500px, 80vw);
-  border-radius: 50%;
-  filter: blur(130px);
-  pointer-events: none;
-}
-
-.glow-1 {
-  top: -250px;
-  left: -150px;
-  background: rgba(255, 193, 7, 0.13);
-}
-
-.glow-2 {
-  right: -220px;
-  bottom: -250px;
-  background: rgba(255, 183, 0, 0.11);
-}
-
-/* =========================
-   FIRMA
-========================= */
-
-.site-signature {
-  position: fixed;
-  z-index: 5000;
-  right: max(10px, env(safe-area-inset-right));
-  bottom: max(8px, env(safe-area-inset-bottom));
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  max-width: min(75vw, 360px);
-  padding: 4px 7px;
-  overflow: hidden;
-  border-radius: 8px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  pointer-events: none;
-  user-select: none;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
-
-.site-signature span {
-  flex: 0 0 auto;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(6px, 1.7vw, 8px);
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.48);
-}
-
-.site-signature strong {
-  overflow: hidden;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(10px, 2.5vw, 13px);
-  font-style: italic;
-  font-weight: 600;
-  text-overflow: ellipsis;
-  color: rgba(255, 211, 67, 0.9);
-}
-
-/* =========================
-   PANTALLA INICIAL
-========================= */
-
-.welcome-screen {
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: grid;
-  place-items: center;
-  padding:
-    max(24px, env(safe-area-inset-top))
-    clamp(14px, 4vw, 30px)
-    max(40px, calc(env(safe-area-inset-bottom) + 20px));
-}
-
-.welcome-card {
-  width: min(500px, 100%);
-  padding:
-    clamp(35px, 6vw, 54px)
-    clamp(22px, 5vw, 42px)
-    clamp(30px, 5vw, 45px);
-  text-align: center;
-  border: 1px solid rgba(255, 213, 85, 0.23);
-  border-radius: clamp(20px, 4vw, 30px);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.025)
-    );
-  backdrop-filter: blur(14px);
-  box-shadow:
-    0 40px 100px rgba(0, 0, 0, 0.55),
-    inset 0 1px rgba(255, 255, 255, 0.1);
-  animation: welcomeIn 1s ease forwards;
-}
-
-@keyframes welcomeIn {
-  from {
-    opacity: 0;
-    transform:
-      translateY(30px)
-      scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-}
-
-.small-flower {
-  width: clamp(58px, 14vw, 70px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 20px;
-  font-size: clamp(30px, 8vw, 38px);
-  border: 1px solid rgba(255, 208, 61, 0.3);
-  border-radius: 50%;
-  background: rgba(255, 194, 35, 0.07);
-}
-
-.welcome-small {
-  margin: 0 0 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(8px, 2.5vw, 11px);
-  letter-spacing: clamp(3px, 1vw, 5px);
-  color: #ffd967;
-}
-
-.welcome-card h1 {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 11vw, 68px);
-  font-weight: 500;
-  line-height: 0.9;
-}
-
-.welcome-card h1 span {
-  display: block;
-  margin-top: 9px;
-  font-style: italic;
-  color: #f9c638;
-}
-
-.welcome-description {
-  max-width: 370px;
-  margin: 27px auto 34px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(11px, 3vw, 13px);
-  font-weight: 300;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.welcome-card form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.welcome-card label {
-  text-align: left;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
-}
-
-.welcome-card input {
-  width: 100%;
-  padding: 16px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  outline: none;
-  border-radius: 12px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  color: white;
-  background: rgba(0, 0, 0, 0.28);
-  transition: 0.3s;
-}
-
-.welcome-card input:focus {
-  border-color: rgba(255, 205, 54, 0.65);
-  box-shadow:
-    0 0 0 4px rgba(255, 195, 18, 0.07);
-}
-
-.welcome-card input::placeholder {
-  color: rgba(255, 255, 255, 0.28);
-}
-
-.welcome-card button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 8px;
-  padding: 16px;
-  border: 0;
-  border-radius: 12px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #1a1200;
-  background:
-    linear-gradient(
-      135deg,
-      #ffe369,
-      #f3af08
-    );
-  box-shadow:
-    0 15px 35px rgba(230, 160, 0, 0.2);
-}
-
-/* =========================
-   RAMO
-========================= */
-
-.bouquet-screen {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding:
-    max(35px, env(safe-area-inset-top))
-    clamp(8px, 3vw, 20px)
-    max(55px, calc(env(safe-area-inset-bottom) + 35px));
-  overflow: hidden;
-}
-
-.top-message {
-  position: relative;
-  z-index: 20;
-  margin-bottom: -8px;
-  text-align: center;
-  animation: topMessageIn 1s ease both;
-}
-
-.top-message span {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(8px, 2vw, 10px);
-  letter-spacing: clamp(3px, 1vw, 5px);
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.top-message h2 {
-  margin: 3px 0 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(36px, 9vw, 62px);
-  line-height: 0.95;
-  font-weight: 500;
-  font-style: italic;
-  color: #ffd343;
-}
-
-@keyframes topMessageIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.bouquet {
-  position: relative;
-  width: min(720px, 96vw, 78dvh);
-  aspect-ratio: 1 / 1;
-  flex: 0 0 auto;
-  margin: 0 auto;
-}
-
-/* =========================
-   PAPEL NEGRO
-========================= */
-
-.paper {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 55%;
-  width: 74%;
-  height: 74%;
-  transform-origin: bottom center;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(34, 34, 34, 0.92),
-      rgba(11, 11, 11, 0.96) 55%,
-      rgba(30, 30, 30, 0.93)
-    );
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.5);
-  clip-path:
-    polygon(
-      50% 0,
-      100% 28%,
-      83% 100%,
-      17% 100%,
-      0 28%
-    );
-  opacity: 0;
-  animation: paperAppear 0.8s ease forwards;
-}
-
-.paper-left {
-  transform:
-    translate(-59%, -49%)
-    rotate(-19deg);
-  animation-delay: 0.1s;
-}
-
-.paper-left-2 {
-  transform:
-    translate(-62%, -47%)
-    rotate(-8deg);
-  animation-delay: 0.2s;
-}
-
-.paper-right {
-  transform:
-    translate(-41%, -49%)
-    rotate(19deg);
-  animation-delay: 0.25s;
-}
-
-.paper-right-2 {
-  transform:
-    translate(-38%, -47%)
-    rotate(8deg);
-  animation-delay: 0.35s;
-}
-
-.paper-center {
-  transform:
-    translate(-50%, -46%);
-  animation-delay: 0.4s;
-}
-
-@keyframes paperAppear {
-  from {
-    opacity: 0;
-    scale: 0.85;
-  }
-
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-.flower-shadow {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 40%;
-  width: 64%;
-  height: 30%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  filter: blur(24px);
-}
-
-.stem-shadow {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 60%;
-  width: 30%;
-  height: 18%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
-  filter: blur(28px);
-}
-
-.flowers {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-}
-
-/* =========================
-   FLOR
-========================= */
-
-.rose {
-  position: absolute;
-  left: calc(var(--x) * 1%);
-  top: calc(var(--y) * 1%);
-  width: var(--size);
-  aspect-ratio: 1;
-  opacity: 0;
-  transform:
-    translate(-50%, -74%)
-    scale(0.18)
-    rotate(var(--rotation));
-  animation:
-    placeFlower 0.85s
-    cubic-bezier(0.2, 0.85, 0.25, 1.2)
-    var(--delay)
-    forwards;
-}
-
-@keyframes placeFlower {
-  0% {
-    opacity: 0;
-    transform:
-      translate(-50%, -118%)
-      scale(0.18)
-      rotate(var(--rotation));
-  }
-
-  70% {
-    opacity: 1;
-    transform:
-      translate(-50%, -54%)
-      scale(1.05)
-      rotate(var(--rotation));
-  }
-
-  100% {
-    opacity: 1;
-    transform:
-      translate(-50%, -50%)
-      scale(1)
-      rotate(var(--rotation));
-  }
-}
-
-/* =========================
-   TALLOS Y HOJAS
-========================= */
-
-.stem-wrap {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  width: 16px;
-  height: var(--stem-length);
-  transform:
-    translateX(-50%)
-    rotate(var(--stem-lean));
-  transform-origin: top center;
-  z-index: 1;
-  opacity: 0.95;
-}
-
-.stem {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 5px;
-  height: 100%;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      to bottom,
-      #85b54d 0%,
-      #5f9338 33%,
-      #46702d 67%,
-      #2e4a1f 100%
-    );
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.05);
-}
-
-.leaf {
-  position: absolute;
-  width: 18px;
-  height: 11px;
-  border-radius: 100% 0 100% 0;
-  background:
-    linear-gradient(
-      145deg,
-      #80b14b 0%,
-      #5c8f38 50%,
-      #3d6428 100%
-    );
-  box-shadow:
-    inset 1px 1px 2px rgba(255, 255, 255, 0.2);
-}
-
-.leaf::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 8%;
-  width: 1.5px;
-  height: 84%;
-  background: rgba(255, 255, 255, 0.18);
-  transform: translateX(-50%);
-  border-radius: 999px;
-}
-
-.leaf-left {
-  left: -5px;
-  top: 44%;
-  transform: rotate(-38deg);
-}
-
-.leaf-right {
-  right: -5px;
-  top: 63%;
-  transform:
-    scaleX(-1)
-    rotate(-38deg);
-}
-
-/* =========================
-   CABEZA DE FLOR
-========================= */
-
-.rose-head {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  border-radius: 50%;
-  filter:
-    drop-shadow(
-      2px 6px 5px rgba(105, 60, 0, 0.24)
-    );
-}
-
-.outer,
-.mid,
-.inner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: block;
-  transform-origin: center;
-}
-
-.outer {
-  width: 72%;
-  height: 86%;
-  border-radius: 60% 40% 58% 42%;
-  background:
-    linear-gradient(
-      155deg,
-      #ffe97a 0%,
-      #ffd43d 30%,
-      #f4af08 60%,
-      #cb7900 100%
-    );
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.32),
-    inset -3px -5px 6px rgba(148, 76, 0, 0.16);
-}
-
-.outer-1 {
-  transform:
-    translate(-50%, -67%)
-    rotate(0deg);
-}
-
-.outer-2 {
-  transform:
-    translate(-24%, -56%)
-    rotate(52deg);
-}
-
-.outer-3 {
-  transform:
-    translate(-12%, -31%)
-    rotate(100deg);
-}
-
-.outer-4 {
-  transform:
-    translate(-34%, -8%)
-    rotate(160deg);
-}
-
-.outer-5 {
-  transform:
-    translate(-77%, -16%)
-    rotate(228deg);
-}
-
-.outer-6 {
-  transform:
-    translate(-86%, -48%)
-    rotate(292deg);
-}
-
-.mid {
-  width: 53%;
-  height: 63%;
-  border-radius: 58% 42% 58% 42%;
-  background:
-    linear-gradient(
-      150deg,
-      #ffe265 0%,
-      #ffc827 36%,
-      #eb9f00 70%,
-      #b56200 100%
-    );
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.28),
-    inset -2px -4px 5px rgba(126, 63, 0, 0.18);
-}
-
-.mid-1 {
-  transform:
-    translate(-51%, -63%)
-    rotate(18deg);
-}
-
-.mid-2 {
-  transform:
-    translate(-28%, -39%)
-    rotate(94deg);
-}
-
-.mid-3 {
-  transform:
-    translate(-60%, -22%)
-    rotate(168deg);
-}
-
-.mid-4 {
-  transform:
-    translate(-67%, -47%)
-    rotate(250deg);
-}
-
-.inner {
-  width: 34%;
-  height: 42%;
-  border-radius: 62% 38% 60% 40%;
-  background:
-    linear-gradient(
-      145deg,
-      #ffd947,
-      #f2a100 65%,
-      #a65700
-    );
-}
-
-.inner-1 {
-  transform:
-    translate(-50%, -65%)
-    rotate(18deg);
-}
-
-.inner-2 {
-  transform:
-    translate(-26%, -43%)
-    rotate(128deg);
-}
-
-.inner-3 {
-  transform:
-    translate(-70%, -39%)
-    rotate(250deg);
-}
-
-.rose-core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 18%;
-  aspect-ratio: 1;
-  transform:
-    translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #ffd52f,
-      #e68d00 60%,
-      #8f4700
-    );
-  box-shadow:
-    0 0 0 3px rgba(239, 157, 0, 0.35);
-}
-
-/* =========================
-   CINTA
-========================= */
-
-.bouquet-base {
-  position: absolute;
-  z-index: 12;
-  left: 50%;
-  bottom: 7%;
-  transform: translateX(-50%);
-  opacity: 0;
-  animation:
-    baseAppear 1s 5.7s ease forwards;
-}
-
-@keyframes baseAppear {
-  from {
-    opacity: 0;
-    transform:
-      translateX(-50%)
-      translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateX(-50%)
-      translateY(0);
-  }
-}
-
-.ribbon {
-  position: relative;
-  min-width: clamp(150px, 28vw, 190px);
-  padding:
-    10px
-    clamp(18px, 4vw, 30px);
-  text-align: center;
-  border-radius: 4px;
-  color: #17120a;
-  background:
-    linear-gradient(
-      145deg,
-      #f8d879,
-      #e4b74e
-    );
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.35);
-}
-
-.ribbon::before,
-.ribbon::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 52px;
-  height: 80%;
-  transform: translateY(-50%);
-  background: #be8e31;
-  z-index: -1;
-}
-
-.ribbon::before {
-  right: calc(100% - 8px);
-  clip-path:
-    polygon(
-      0 0,
-      100% 8%,
-      80% 50%,
-      100% 92%,
-      0 100%
-    );
-}
-
-.ribbon::after {
-  left: calc(100% - 8px);
-  clip-path:
-    polygon(
-      100% 0,
-      0 8%,
-      20% 50%,
-      0 92%,
-      100% 100%
-    );
-}
-
-.ribbon span {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.ribbon strong {
-  display: block;
-  margin: 1px 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(18px, 4vw, 23px);
-  font-style: italic;
-}
-
-.ribbon small {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
-  letter-spacing: 1px;
-}
-
-/* =========================
-   MENSAJES
-========================= */
-
-.creating-text {
-  position: relative;
-  z-index: 10;
-  margin-top: clamp(-18px, -2vw, -8px);
-  text-align: center;
-}
-
-.creating-text > span {
-  display: block;
-  width: 130px;
-  height: 2px;
-  margin: 0 auto 14px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.creating-text > span::before {
-  content: '';
-  display: block;
-  width: 40%;
-  height: 100%;
-  background: #ffc926;
-  animation: loading 1.3s linear infinite;
-}
-
-@keyframes loading {
-  from {
-    transform: translateX(-110%);
-  }
-
-  to {
-    transform: translateX(350%);
-  }
-}
-
-.creating-text p {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(8px, 2.3vw, 10px);
-  letter-spacing: clamp(1px, 0.5vw, 1.8px);
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.touch-message {
-  position: relative;
-  z-index: 15;
-  margin-top: clamp(-18px, -2vw, -6px);
-  text-align: center;
-  opacity: 0;
-  animation: touchAppear 1s ease forwards;
-}
-
-@keyframes touchAppear {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.touch-icon {
-  margin-bottom: 5px;
-  font-size: clamp(23px, 6vw, 29px);
-  animation: touchBounce 1.4s ease-in-out infinite;
-}
-
-@keyframes touchBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-.touch-message p {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(20px, 5vw, 25px);
-  font-style: italic;
-  color: #ffdb52;
-}
-
-.touch-message span {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.43);
-}
-
-.bouquet-ready {
-  cursor: pointer;
-}
-
-.restart-button {
-  position: absolute;
-  z-index: 30;
-  top: max(12px, env(safe-area-inset-top));
-  right: max(12px, env(safe-area-inset-right));
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(8px, 2vw, 10px);
-  color: rgba(255, 255, 255, 0.65);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* =========================
-   CARTA
-========================= */
-
-.letter-overlay {
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: clamp(4px, 1dvh, 12px);
-  padding:
-    max(10px, env(safe-area-inset-top))
-    clamp(8px, 3vw, 20px)
-    max(36px, calc(env(safe-area-inset-bottom) + 22px));
-  overflow: hidden;
-  opacity: 1;
-  background:
-    radial-gradient(
-      circle at 50% 40%,
-      #483a27,
-      #17120d 60%,
-      #080604
-    );
-  animation: overlayIn 0.7s ease both;
-  transition: opacity 0.55s ease;
-}
-
-@keyframes overlayIn {
-  from {
-    opacity: 0;
-  }
+import { useMemo, useState } from 'react'
+import './App.css'
+
+const FLOWER_INTERVAL = 85
+const CREATOR_NAME = 'Jehiel'
+
+const FLOWER_RINGS = [
+  { count: 1, radius: 0, size: 62 },
+  { count: 7, radius: 9, size: 60 },
+  { count: 12, radius: 17, size: 58 },
+  { count: 18, radius: 25, size: 56 },
+  { count: 22, radius: 32, size: 54 },
+  { count: 26, radius: 39, size: 52 },
+  { count: 28, radius: 45, size: 50 },
+]
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value))
+}
+
+function createFlowers() {
+  const flowers = []
+  let order = 0
+
+  const centerX = 50
+  const centerY = 40
+
+  FLOWER_RINGS.forEach((ring, ringIndex) => {
+    if (ring.count === 1) {
+      flowers.push({
+        id: `ring-${ringIndex}-0`,
+        x: centerX,
+        y: centerY,
+        size: ring.size,
+        delay: order * FLOWER_INTERVAL,
+        rotation: 0,
+        stemLength: 132,
+        stemLean: 0,
+        zIndex: 300,
+      })
+      order += 1
+      return
+    }
+
+    const angleOffset =
+      -Math.PI / 2 + (ringIndex % 2 === 0 ? 0 : 0.1)
+
+    for (let i = 0; i < ring.count; i += 1) {
+      const angle =
+        angleOffset + (i / ring.count) * Math.PI * 2
+
+      const jitterX =
+        Math.sin((ringIndex + 1) * 1.17 + i * 0.81) * 0.65
+
+      const jitterY =
+        Math.cos((ringIndex + 1) * 0.88 + i * 0.67) * 0.55
+
+      const x =
+        centerX + Math.cos(angle) * ring.radius + jitterX
+
+      const y =
+        centerY + Math.sin(angle) * ring.radius + jitterY
+
+      const size =
+        ring.size + (((i + ringIndex) % 3) - 1) * 1.1
+
+      const rotation =
+        ((i * 11 + ringIndex * 9) % 20) - 10
+
+      const stemLength = clamp(
+        138 - (y - centerY) * 2.25,
+        52,
+        142,
+      )
+
+      const stemLean = clamp(
+        (x - centerX) * 0.3,
+        -12,
+        12,
+      )
+
+      flowers.push({
+        id: `ring-${ringIndex}-${i}`,
+        x,
+        y,
+        size,
+        delay: order * FLOWER_INTERVAL,
+        rotation,
+        stemLength,
+        stemLean,
+        zIndex: Math.round(100 + y * 3),
+      })
+
+      order += 1
+    }
+  })
+
+  return flowers
+}
+
+function Rose({ flower }) {
+  return (
+    <div
+      className="rose"
+      style={{
+        '--x': flower.x,
+        '--y': flower.y,
+        '--size': `${flower.size}px`,
+        '--delay': `${flower.delay}ms`,
+        '--rotation': `${flower.rotation}deg`,
+        '--stem-length': `${flower.stemLength}px`,
+        '--stem-lean': `${flower.stemLean}deg`,
+        zIndex: flower.zIndex,
+      }}
+    >
+      <div className="stem-wrap">
+        <span className="stem" />
+        <span className="leaf leaf-left" />
+        <span className="leaf leaf-right" />
+      </div>
+
+      <div className="rose-head">
+        <span className="outer outer-1" />
+        <span className="outer outer-2" />
+        <span className="outer outer-3" />
+        <span className="outer outer-4" />
+        <span className="outer outer-5" />
+        <span className="outer outer-6" />
 
-  to {
-    opacity: 1;
-  }
-}
-
-.letter-overlay.closing {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.letter-background-light {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(650px, 95vw);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: rgba(255, 205, 90, 0.11);
-  filter: blur(100px);
-  pointer-events: none;
-}
-
-.letter-title {
-  position: relative;
-  z-index: 50;
-  width: min(600px, 100%);
-  justify-self: center;
-  padding:
-    clamp(4px, 0.8dvh, 8px)
-    10px;
-  text-align: center;
-  pointer-events: none;
-}
-
-.letter-title span {
-  display: block;
-  margin-bottom: clamp(1px, 0.4dvh, 4px);
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(7px, 1.8vw, 9px);
-  letter-spacing: clamp(2px, 0.8vw, 4px);
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.48);
-}
-
-.letter-title strong {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(27px, 8vw, 42px);
-  line-height: 1;
-  font-style: italic;
-  font-weight: 500;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #ffd34c;
-  text-shadow:
-    0 4px 18px rgba(0, 0, 0, 0.8);
-}
-
-.envelope-area {
-  position: relative;
-  min-width: 0;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-}
-
-.envelope-scene {
-  position: relative;
-  width: min(580px, 96vw);
-  height: 100%;
-  min-height: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  perspective: 1400px;
-}
-
-.envelope {
-  position: relative;
-  --envelope-width: min(500px, 88vw);
-  width: var(--envelope-width);
-  aspect-ratio: 5 / 3;
-  flex: 0 0 auto;
-  margin-bottom: clamp(8px, 2dvh, 24px);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.envelope:not(.opened):not(.closing-envelope) {
-  animation:
-    envelopeWaiting 2.2s ease-in-out infinite;
-}
-
-@keyframes envelopeWaiting {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.envelope.opened {
-  animation: none;
-  cursor: default;
-}
-
-.envelope.closing-envelope {
-  animation: none;
-  cursor: default;
-  pointer-events: none;
-}
-
-.envelope-back {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  border-radius: 5px;
-  background:
-    linear-gradient(
-      145deg,
-      #b8d0cd,
-      #8eb2ae
-    );
-  box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.48);
-}
-
-.letter-paper {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  bottom: clamp(14px, 3vw, 25px);
-  width: 88%;
-  max-height: min(50dvh, 500px);
-  padding:
-    clamp(26px, 4vw, 38px)
-    clamp(22px, 5vw, 40px)
-    clamp(34px, 5vw, 45px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  transform:
-    translateX(-50%)
-    translateY(68%);
-  border-radius: 4px;
-  color: #45382d;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(176, 131, 78, 0.04),
-      transparent 20%,
-      transparent 80%,
-      rgba(176, 131, 78, 0.04)
-    ),
-    #fffaf0;
-  box-shadow:
-    0 20px 55px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  pointer-events: none;
-  scrollbar-width: thin;
-  scrollbar-color:
-    rgba(145, 110, 65, 0.4)
-    transparent;
-  transition:
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.4s ease;
-}
-
-.envelope.opened .letter-paper {
-  transform:
-    translateX(-50%)
-    translateY(-17%);
-  opacity: 1;
-  pointer-events: auto;
-  cursor: pointer;
-  transition-delay: 0.65s, 0.65s;
-}
-
-.letter-paper::-webkit-scrollbar {
-  width: 5px;
-}
-
-.letter-paper::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.letter-paper::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background: rgba(145, 110, 65, 0.3);
-}
-
-.letter-decoration {
-  margin-bottom: 5px;
-  text-align: center;
-  font-size: clamp(22px, 5vw, 28px);
-}
-
-.letter-date {
-  margin: 0 0 clamp(18px, 3dvh, 25px) !important;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: clamp(7px, 1.8vw, 9px) !important;
-  letter-spacing: clamp(1px, 0.5vw, 2px);
-  text-transform: uppercase;
-  color: #a58d72 !important;
-}
-
-.letter-paper h3 {
-  margin: 0 0 18px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(25px, 6vw, 32px);
-  line-height: 1.1;
-  font-style: italic;
-  font-weight: 600;
-  color: #7f6647;
-}
-
-.letter-paper p {
-  margin: 0 0 clamp(12px, 2dvh, 17px);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(16px, 4vw, 19px);
-  line-height: 1.5;
-}
-
-.special-message {
-  margin-top: clamp(20px, 3dvh, 28px) !important;
-  text-align: center;
-  font-size: clamp(18px, 4.5vw, 22px) !important;
-  font-weight: 600;
-  color: #a77500;
-}
-
-.letter-ending {
-  margin-top: 26px !important;
-  text-align: right;
-  font-style: italic;
-  color: #aa7f21;
-}
-
-.close-letter-hint {
-  margin-top: clamp(22px, 3dvh, 30px);
-  padding-top: 14px;
-  border-top:
-    1px solid rgba(143, 110, 71, 0.15);
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(7px, 1.7vw, 8px);
-  letter-spacing: clamp(1px, 0.5vw, 1.6px);
-  text-transform: uppercase;
-  color: rgba(100, 75, 50, 0.45);
-}
-
-.envelope-front {
-  position: absolute;
-  z-index: 4;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.front-left {
-  position: absolute;
-  inset: 0;
-  clip-path:
-    polygon(
-      0 0,
-      56% 60%,
-      0 100%
-    );
-  background:
-    linear-gradient(
-      145deg,
-      #a7c5c1,
-      #86aaa6
-    );
-}
-
-.front-right {
-  position: absolute;
-  inset: 0;
-  clip-path:
-    polygon(
-      100% 0,
-      44% 60%,
-      100% 100%
-    );
-  background:
-    linear-gradient(
-      220deg,
-      #a9c7c3,
-      #88aba7
-    );
-}
-
-.front-bottom {
-  position: absolute;
-  inset: 0;
-  clip-path:
-    polygon(
-      0 100%,
-      50% 45%,
-      100% 100%
-    );
-  background:
-    linear-gradient(
-      to top,
-      #93b4b0,
-      #b2cdca
-    );
-}
-
-.envelope-flap {
-  position: absolute;
-  z-index: 6;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 64%;
-  transform-origin: top center;
-  transform: rotateX(0deg);
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      50% 100%
-    );
-  background:
-    linear-gradient(
-      165deg,
-      #b8d1ce,
-      #91b5b1
-    );
-  transition:
-    transform 0.75s ease 0.75s;
-}
-
-.envelope.opened .envelope-flap {
-  z-index: 1;
-  transform: rotateX(180deg);
-  transition-delay: 0.2s;
-}
-
-.wax-seal {
-  position: absolute;
-  z-index: 8;
-  left: 50%;
-  top: 44%;
-  width: clamp(44px, 11vw, 58px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  transform:
-    translate(-50%, -50%)
-    scale(1);
-  border-radius: 50%;
-  font-size: clamp(18px, 5vw, 24px);
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #b58454,
-      #8b5c35 57%,
-      #60381e
-    );
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.35),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.17);
-  opacity: 1;
-  transition:
-    opacity 0.3s ease 1.35s,
-    transform 0.3s ease 1.35s;
-}
-
-.envelope.opened .wax-seal {
-  opacity: 0;
-  transform:
-    translate(-50%, -50%)
-    scale(0.6);
-  transition-delay: 0s;
-}
-
-.letter-controls {
-  position: relative;
-  z-index: 60;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: clamp(88px, 13dvh, 125px);
-  padding-bottom: clamp(2px, 1dvh, 10px);
-  text-align: center;
-}
-
-.open-envelope-message,
-.letter-opened-message,
-.closing-message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 50px;
-  text-align: center;
-}
-
-.open-envelope-message {
-  animation: openMessageIn 0.8s 0.4s both;
-}
-
-@keyframes openMessageIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.envelope-touch-icon {
-  margin-bottom: 2px;
-  font-size: clamp(21px, 5vw, 25px);
-  animation:
-    envelopeTouch 1.3s ease-in-out infinite;
-}
-
-@keyframes envelopeTouch {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.open-envelope-message p {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(19px, 4.8vw, 23px);
-  font-style: italic;
-  color: #ffd657;
-}
-
-.open-envelope-message span {
-  display: block;
-  margin-top: 3px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(7px, 1.7vw, 8px);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.letter-opened-message span,
-.closing-message span {
-  font-size: clamp(16px, 4vw, 19px);
-  animation:
-    littleHeart 1.5s ease-in-out infinite;
-}
-
-.letter-opened-message p,
-.closing-message p {
-  margin: 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(15px, 4vw, 18px);
-  font-style: italic;
-  color: rgba(255, 218, 90, 0.75);
-}
-
-@keyframes littleHeart {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.15);
-  }
-}
-
-.return-button {
-  margin-top: clamp(4px, 1dvh, 10px);
-  padding: 10px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(8px, 2vw, 9px);
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.68);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 480px) {
-  .bouquet {
-    width: min(98vw, 520px);
-  }
-
-  .rose {
-    width: calc(var(--size) * 0.9);
-  }
-
-  .stem-wrap {
-    width: 14px;
-  }
-
-  .stem {
-    width: 4px;
-  }
-
-  .leaf {
-    width: 16px;
-    height: 10px;
-  }
-
-  .letter-overlay {
-    gap: 2px;
-    padding-left: 6px;
-    padding-right: 6px;
-  }
-
-  .letter-title {
-    padding-top: 2px;
-    padding-bottom: 4px;
-  }
-
-  .letter-title strong {
-    font-size: clamp(27px, 9vw, 34px);
-  }
-
-  .envelope {
-    --envelope-width: min(92vw, 420px);
-    margin-bottom: clamp(5px, 1dvh, 12px);
-  }
-
-  .letter-paper {
-    width: 92%;
-    max-height: min(48dvh, 470px);
-    padding: 25px 22px 35px;
-  }
-
-  .envelope.opened .letter-paper {
-    transform:
-      translateX(-50%)
-      translateY(-12%);
-  }
-
-  .letter-controls {
-    min-height: clamp(80px, 12dvh, 105px);
-  }
-
-  .site-signature {
-    max-width: 70vw;
-  }
-}
-
-@media (max-width: 380px) {
-  .bouquet {
-    width: 99vw;
-  }
-
-  .rose {
-    width: calc(var(--size) * 0.84);
-  }
-
-  .letter-title span {
-    letter-spacing: 1.5px;
-  }
-
-  .letter-title strong {
-    font-size: 27px;
-  }
-
-  .envelope {
-    --envelope-width: 94vw;
-  }
-
-  .letter-paper {
-    width: 93%;
-    max-height: 46dvh;
-    padding: 22px 18px 32px;
-  }
-
-  .letter-paper p {
-    font-size: 15.5px;
-  }
-
-  .special-message {
-    font-size: 17px !important;
-  }
-}
-
-@media (max-height: 700px) {
-  .letter-overlay {
-    grid-template-rows:
-      auto
-      minmax(0, 1fr)
-      auto;
-    padding-top: max(5px, env(safe-area-inset-top));
-    padding-bottom: max(18px, env(safe-area-inset-bottom));
-  }
-
-  .letter-title {
-    padding: 2px 8px;
-  }
-
-  .letter-title span {
-    font-size: 7px;
-  }
-
-  .letter-title strong {
-    font-size: clamp(24px, 5dvh, 30px);
-  }
-
-  .envelope {
-    --envelope-width: min(470px, 78vw, 75dvh);
-    margin-bottom: 4px;
-  }
-
-  .letter-paper {
-    max-height: 51dvh;
-    padding: 22px 28px 30px;
-  }
-
-  .envelope.opened .letter-paper {
-    transform:
-      translateX(-50%)
-      translateY(-8%);
-  }
-
-  .letter-controls {
-    min-height: 67px;
-  }
-
-  .open-envelope-message p {
-    font-size: 18px;
-  }
-
-  .return-button {
-    padding: 7px 15px;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-  .bouquet {
-    width: min(78vw, 720px);
-  }
-
-  .envelope {
-    --envelope-width: min(520px, 78vw);
-  }
-
-  .letter-paper {
-    max-height: min(54dvh, 520px);
-  }
-
-  .envelope.opened .letter-paper {
-    transform:
-      translateX(-50%)
-      translateY(-17%);
-  }
-}
-
-@media (min-width: 1200px) {
-  .bouquet {
-    width: min(670px, 60vw, 78dvh);
-  }
-
-  .letter-overlay {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  .envelope {
-    --envelope-width: min(510px, 42vw);
-  }
-
-  .letter-paper {
-    max-height: min(510px, 56dvh);
-  }
-}
-
-@media (orientation: landscape) and (max-height: 600px) {
-  .bouquet {
-    width: min(66vh, 500px);
-  }
-
-  .rose {
-    width: calc(var(--size) * 0.84);
-  }
-
-  .letter-overlay {
-    grid-template-columns:
-      minmax(110px, 0.35fr)
-      minmax(0, 1fr)
-      minmax(140px, 0.4fr);
-    grid-template-rows: 1fr;
-    align-items: center;
-    gap: 12px;
-    padding:
-      max(6px, env(safe-area-inset-top))
-      max(12px, env(safe-area-inset-right))
-      max(6px, env(safe-area-inset-bottom))
-      max(12px, env(safe-area-inset-left));
-  }
-
-  .letter-title {
-    grid-column: 1;
-    align-self: center;
-    width: 100%;
-    padding: 6px;
-  }
-
-  .letter-title span {
-    font-size: 6px;
-    letter-spacing: 1px;
-  }
-
-  .letter-title strong {
-    margin-top: 8px;
-    font-size: clamp(23px, 5vw, 31px);
-    white-space: normal;
-  }
-
-  .envelope-area {
-    grid-column: 2;
-    height: 100%;
-  }
-
-  .envelope {
-    --envelope-width: min(58vw, 78dvh, 430px);
-    margin-bottom: 0;
-  }
-
-  .letter-paper {
-    max-height: 75dvh;
-    padding: 20px 24px 28px;
-  }
-
-  .envelope.opened .letter-paper {
-    transform:
-      translateX(-50%)
-      translateY(-8%);
-  }
-
-  .letter-controls {
-    grid-column: 3;
-    min-height: 0;
-    padding: 5px;
-  }
-
-  .return-button {
-    margin-top: 5px;
-  }
-
-  .site-signature {
-    max-width: 35vw;
-  }
-}
+        <span className="mid mid-1" />
+        <span className="mid mid-2" />
+        <span className="mid mid-3" />
+        <span className="mid mid-4" />
+
+        <span className="inner inner-1" />
+        <span className="inner inner-2" />
+        <span className="inner inner-3" />
+        <span className="rose-core" />
+      </div>
+    </div>
+  )
+}
+
+function App() {
+  const [inputName, setInputName] = useState('')
+  const [name, setName] = useState('')
+
+  const [started, setStarted] = useState(false)
+  const [ready, setReady] = useState(false)
+
+  const [letterOpen, setLetterOpen] = useState(false)
+  const [envelopeOpened, setEnvelopeOpened] = useState(false)
+
+  const [isClosing, setIsClosing] = useState(false)
+  const [fadeOut, setFadeOut] = useState(false)
+
+  const flowers = useMemo(() => createFlowers(), [])
+
+  const createBouquet = (event) => {
+    event.preventDefault()
+
+    const cleanName = inputName.trim()
+    if (!cleanName) return
+
+    setName(cleanName)
+    setStarted(true)
+    setReady(false)
+
+    setLetterOpen(false)
+    setEnvelopeOpened(false)
+    setIsClosing(false)
+    setFadeOut(false)
+
+    const animationTime =
+      flowers.length * FLOWER_INTERVAL + 1000
+
+    setTimeout(() => {
+      setReady(true)
+    }, animationTime)
+  }
+
+  const showEnvelope = () => {
+    if (!ready) return
+
+    setIsClosing(false)
+    setFadeOut(false)
+    setLetterOpen(true)
+    setEnvelopeOpened(false)
+  }
+
+  const openEnvelope = (event) => {
+    event.stopPropagation()
+
+    if (envelopeOpened || isClosing) return
+    setEnvelopeOpened(true)
+  }
+
+  const closeEnvelope = (event) => {
+    event.stopPropagation()
+
+    if (!envelopeOpened || isClosing) return
+
+    setIsClosing(true)
+    setEnvelopeOpened(false)
+
+    setTimeout(() => {
+      setFadeOut(true)
+    }, 1650)
+
+    setTimeout(() => {
+      setLetterOpen(false)
+      setEnvelopeOpened(false)
+      setIsClosing(false)
+      setFadeOut(false)
+    }, 2200)
+  }
+
+  const returnToBouquet = (event) => {
+    event.stopPropagation()
+    if (isClosing) return
+
+    setLetterOpen(false)
+    setEnvelopeOpened(false)
+    setIsClosing(false)
+    setFadeOut(false)
+  }
+
+  const restart = (event) => {
+    event.stopPropagation()
+
+    setStarted(false)
+    setReady(false)
+    setLetterOpen(false)
+    setEnvelopeOpened(false)
+    setIsClosing(false)
+    setFadeOut(false)
+    setName('')
+    setInputName('')
+  }
+
+  return (
+    <main className="app">
+      <div className="background-glow glow-1" />
+      <div className="background-glow glow-2" />
+
+      <div className="site-signature">
+        <span>By</span>
+        <strong>{CREATOR_NAME}</strong>
+      </div>
+
+      {!started && (
+        <section className="welcome-screen">
+          <div className="welcome-card">
+            <div className="small-flower">🌼</div>
+
+            <p className="welcome-small">
+              21 • 09 • 2026
+            </p>
+
+            <h1>
+              Un ramo especial
+              <span>para ti</span>
+            </h1>
+
+            <p className="welcome-description">
+              Escribe tu nombre y deja que las flores
+              aparezcan una por una.
+            </p>
+
+            <form onSubmit={createBouquet}>
+              <label htmlFor="name">
+                ¿Cómo te llamas?
+              </label>
+
+              <input
+                id="name"
+                type="text"
+                placeholder="Escribe tu nombre..."
+                value={inputName}
+                onChange={(event) =>
+                  setInputName(event.target.value)
+                }
+                autoComplete="off"
+                maxLength={40}
+              />
+
+              <button type="submit">
+                Crear mi ramo
+                <span>🌼</span>
+              </button>
+            </form>
+          </div>
+        </section>
+      )}
+
+      {started && (
+        <section
+          className={`bouquet-screen ${
+            ready ? 'bouquet-ready' : ''
+          }`}
+          onClick={showEnvelope}
+        >
+          <div className="top-message">
+            <span>Para</span>
+            <h2>{name}</h2>
+          </div>
+
+          <div className="bouquet">
+            <div className="paper paper-left" />
+            <div className="paper paper-left-2" />
+            <div className="paper paper-right" />
+            <div className="paper paper-right-2" />
+            <div className="paper paper-center" />
+
+            <div className="flower-shadow" />
+            <div className="stem-shadow" />
+
+            <div className="flowers">
+              {flowers.map((flower) => (
+                <Rose
+                  key={flower.id}
+                  flower={flower}
+                />
+              ))}
+            </div>
+
+            <div className="bouquet-base">
+              <div className="ribbon">
+                <span>Para</span>
+                <strong>{name}</strong>
+                <small>21 · 09 · 2026</small>
+              </div>
+            </div>
+          </div>
+
+          {!ready && (
+            <div className="creating-text">
+              <span />
+              <p>
+                Armando el ramo desde el centro...
+              </p>
+            </div>
+          )}
+
+          {ready && (
+            <div className="touch-message">
+              <div className="touch-icon">☝🏻</div>
+              <p>Toca la pantalla</p>
+              <span>Hay algo más para ti</span>
+            </div>
+          )}
+
+          <button
+            className="restart-button"
+            onClick={restart}
+          >
+            ↻ Empezar de nuevo
+          </button>
+        </section>
+      )}
+
+      {letterOpen && (
+        <section
+          className={`letter-overlay ${
+            fadeOut ? 'closing' : ''
+          }`}
+          onClick={(event) =>
+            event.stopPropagation()
+          }
+        >
+          <div className="letter-background-light" />
+
+          <header className="letter-title">
+            <span>
+              Tengo una pequeña carta para
+            </span>
+            <strong>{name}</strong>
+          </header>
+
+          <div className="envelope-area">
+            <div className="envelope-scene">
+              <div
+                className={`envelope ${
+                  envelopeOpened ? 'opened' : ''
+                } ${
+                  isClosing
+                    ? 'closing-envelope'
+                    : ''
+                }`}
+                onClick={openEnvelope}
+              >
+                <div className="envelope-back" />
+
+                <article
+                  className="letter-paper"
+                  onClick={closeEnvelope}
+                >
+                  <div className="letter-decoration">
+                    🌼
+                  </div>
+
+                  <p className="letter-date">
+                    21 de septiembre de 2026
+                  </p>
+
+                  <h3>Para {name},</h3>
+
+                  <p>
+                    Hoy quiero regalarte este pequeño
+                    ramo de flores amarillas, aunque
+                    sea a través de una pantalla.
+                  </p>
+
+                  <p>
+                    Que cada flor represente un bonito
+                    deseo para ti: alegría,
+                    tranquilidad, cariño, nuevos
+                    sueños y muchísimas razones para
+                    sonreír.
+                  </p>
+
+                  <p>
+                    Espero que todo aquello que
+                    anhelas siga creciendo y
+                    floreciendo, y que nunca te
+                    falten personas, momentos y
+                    recuerdos que hagan tus días un
+                    poquito más especiales.
+                  </p>
+
+                  <p className="special-message">
+                    ¡Feliz día de las flores amarillas!
+                    <br />
+                    💛 Feliz 21-09-2026 💛
+                  </p>
+
+                  <p className="letter-ending">
+                    Con mucho cariño 🌼
+                  </p>
+
+                  <div className="close-letter-hint">
+                    Toca la carta para guardarla
+                  </div>
+                </article>
+
+                <div className="envelope-front">
+                  <div className="front-left" />
+                  <div className="front-right" />
+                  <div className="front-bottom" />
+                </div>
+
+                <div className="envelope-flap" />
+
+                <div className="wax-seal">
+                  <span>🌼</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="letter-controls">
+            {!envelopeOpened &&
+              !isClosing && (
+                <div className="open-envelope-message">
+                  <div className="envelope-touch-icon">
+                    ☝🏻
+                  </div>
+
+                  <p>
+                    Toca el sobre para abrirlo
+                  </p>
+
+                  <span>
+                    Tu carta está esperando
+                  </span>
+                </div>
+              )}
+
+            {envelopeOpened &&
+              !isClosing && (
+                <div className="letter-opened-message">
+                  <span>💛</span>
+                  <p>
+                    Toca la carta para guardarla
+                  </p>
+                </div>
+              )}
+
+            {isClosing &&
+              !fadeOut && (
+                <div className="closing-message">
+                  <span>💛</span>
+                  <p>
+                    Guardando tu carta...
+                  </p>
+                </div>
+              )}
+
+            {!isClosing && (
+              <button
+                className="return-button"
+                onClick={returnToBouquet}
+              >
+                ← Volver al ramo
+              </button>
+            )}
+          </div>
+        </section>
+      )}
+    </main>
+  )
+}
+
+export default App
