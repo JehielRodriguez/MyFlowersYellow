@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import './App.css'
 
 const FLOWER_INTERVAL = 85
-const CREATOR_NAME = 'Jehiel'
+const CREATOR_NAME = 'Jehiel Jeremías Rodriguez Sarmiento'
 
 const FLOWER_RINGS = [
   { count: 1, radius: 0, size: 62 },
@@ -256,7 +256,7 @@ function App() {
             <div className="small-flower">🌼</div>
 
             <p className="welcome-small">
-              21 • 09 • 2026
+              ----------
             </p>
 
             <h1>
@@ -265,8 +265,7 @@ function App() {
             </h1>
 
             <p className="welcome-description">
-              Escribe tu nombre y deja que las flores
-              aparezcan una por una.
+              ¡Ayúdanos a crear algo para ti!.
             </p>
 
             <form onSubmit={createBouquet}>
@@ -287,8 +286,8 @@ function App() {
               />
 
               <button type="submit">
-                Crear mi ramo
-                <span>🌼</span>
+                Crear
+                <span></span>
               </button>
             </form>
           </div>
@@ -330,7 +329,7 @@ function App() {
               <div className="ribbon">
                 <span>Para</span>
                 <strong>{name}</strong>
-                <small>21 · 09 · 2026</small>
+                <small>----------</small>
               </div>
             </div>
           </div>
@@ -431,13 +430,13 @@ function App() {
                   </p>
 
                   <p className="special-message">
-                    ¡Feliz día de las flores amarillas!
+                    ¡Esto fue algo para ti!
                     <br />
-                    💛 Feliz 21-09-2026 💛
+                    Feliz Día
                   </p>
 
                   <p className="letter-ending">
-                    Con mucho cariño 🌼
+                    🌼
                   </p>
 
                   <div className="close-letter-hint">
