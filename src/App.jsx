@@ -10,8 +10,6 @@ const FLOWER_RINGS = [
   { count: 12, radius: 17, size: 58 },
   { count: 18, radius: 25, size: 56 },
   { count: 22, radius: 32, size: 54 },
-  { count: 26, radius: 39, size: 52 },
-  { count: 28, radius: 45, size: 50 },
 ]
 
 function clamp(value, min, max) {
@@ -37,7 +35,7 @@ function createFlowers() {
         stemLength: 132,
         stemLean: 0,
         zIndex: 300,
-        hasStem: false, // <- la flor principal NO tendrá tallo
+        hasStem: false,
       })
       order += 1
       return
@@ -90,7 +88,7 @@ function createFlowers() {
         stemLength,
         stemLean,
         zIndex: Math.round(100 + y * 3),
-        hasStem: true, // <- todas las demás sí tendrán tallo
+        hasStem: true,
       })
 
       order += 1
@@ -267,7 +265,8 @@ function App() {
             </h1>
 
             <p className="welcome-description">
-              Ayúdanos a crear algo para ti 😊.
+              Escribe tu nombre y deja que las flores
+              aparezcan una por una.
             </p>
 
             <form onSubmit={createBouquet}>
@@ -288,8 +287,8 @@ function App() {
               />
 
               <button type="submit">
-                Crear
-                <span></span>
+                Crear mi ramo
+                <span>🌼</span>
               </button>
             </form>
           </div>
@@ -329,7 +328,7 @@ function App() {
 
             <div className="bouquet-base">
               <div className="ribbon">
-                <span></span>
+                <span>Para</span>
                 <strong>{name}</strong>
                 <small>21 · 09 · 2026</small>
               </div>
@@ -432,13 +431,13 @@ function App() {
                   </p>
 
                   <p className="special-message">
-                    ¡Álgo especial para ti!
+                    ¡Feliz día de las flores amarillas!
                     <br />
-                    Feliz Día
+                    💛 Feliz 21-09-2026 💛
                   </p>
 
                   <p className="letter-ending">
-                  
+                    Con mucho cariño 🌼
                   </p>
 
                   <div className="close-letter-hint">
