@@ -37,6 +37,7 @@ function createFlowers() {
         stemLength: 132,
         stemLean: 0,
         zIndex: 300,
+        hasStem: false, // <- la flor principal NO tendrá tallo
       })
       order += 1
       return
@@ -89,6 +90,7 @@ function createFlowers() {
         stemLength,
         stemLean,
         zIndex: Math.round(100 + y * 3),
+        hasStem: true, // <- todas las demás sí tendrán tallo
       })
 
       order += 1
@@ -113,11 +115,13 @@ function Rose({ flower }) {
         zIndex: flower.zIndex,
       }}
     >
-      <div className="stem-wrap">
-        <span className="stem" />
-        <span className="leaf leaf-left" />
-        <span className="leaf leaf-right" />
-      </div>
+      {flower.hasStem && (
+        <div className="stem-wrap">
+          <span className="stem" />
+          <span className="leaf leaf-left" />
+          <span className="leaf leaf-right" />
+        </div>
+      )}
 
       <div className="rose-head">
         <span className="outer outer-1" />
