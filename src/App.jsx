@@ -1,62 +1,82 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 
-const FLOWER_INTERVAL = 95
+const FLOWER_INTERVAL = 90
 const CREATOR_NAME = 'Jehiel'
 
-const OVAL_ROWS = [
-  { count: 6, width: 24, y: 17, size: 40, stem: 132 },
-  { count: 8, width: 34, y: 22, size: 42, stem: 126 },
-  { count: 10, width: 44, y: 28, size: 44, stem: 120 },
-  { count: 12, width: 52, y: 35, size: 46, stem: 112 },
-  { count: 13, width: 58, y: 42, size: 48, stem: 104 },
-  { count: 13, width: 59, y: 49, size: 49, stem: 96 },
-  { count: 12, width: 56, y: 56, size: 47, stem: 88 },
-  { count: 10, width: 48, y: 63, size: 45, stem: 80 },
-  { count: 8, width: 38, y: 69, size: 43, stem: 72 },
+const FLOWER_RINGS = [
+  { count: 1, rx: 0, ry: 0, size: 60 },
+  { count: 6, rx: 10, ry: 7, size: 58 },
+  { count: 10, rx: 19, ry: 13, size: 56 },
+  { count: 14, rx: 29, ry: 19, size: 54 },
+  { count: 18, rx: 38, ry: 25, size: 52 },
+  { count: 22, rx: 46, ry: 31, size: 50 },
 ]
 
 function createFlowers() {
   const flowers = []
   let order = 0
 
-  OVAL_ROWS.forEach((row, rowIndex) => {
-    const startX = 50 - row.width / 2
-    const gap =
-      row.count > 1 ? row.width / (row.count - 1) : 0
+  const centerX = 50
+  const centerY = 39
 
-    for (let i = 0; i < row.count; i += 1) {
-      const x = startX + gap * i
+  FLOWER_RINGS.forEach((ring, ringIndex) => {
+    if (ring.count === 1) {
+      flowers.push({
+        id: `ring-${ringIndex}-0`,
+        x: centerX,
+        y: centerY,
+        size: ring.size,
+        delay: order * FLOWER_INTERVAL,
+        rotation: 0,
+        stemLength: 140,
+        stemLean: 0,
+        zIndex: 100,
+      })
+      order += 1
+      return
+    }
 
-      const waveX =
-        Math.sin((rowIndex + 1) * 0.8 + i * 0.7) * 0.75
+    const angleOffset = ringIndex % 2 === 0 ? -Math.PI / 2 : -Math.PI / 2 + 0.14
 
-      const waveY =
-        Math.cos((rowIndex + 1) * 0.9 + i * 0.55) * 0.65
+    for (let i = 0; i < ring.count; i += 1) {
+      const angle =
+        angleOffset + (i / ring.count) * Math.PI * 2
 
-      const xFinal = x + waveX
-      const yFinal = row.y + waveY
+      const jitterX =
+        Math.sin((ringIndex + 1) * 0.9 + i * 0.77) * 0.7
+
+      const jitterY =
+        Math.cos((ringIndex + 1) * 0.75 + i * 0.58) * 0.55
+
+      const x =
+        centerX + Math.cos(angle) * ring.rx + jitterX
+
+      const y =
+        centerY + Math.sin(angle) * ring.ry + jitterY
 
       const size =
-        row.size + (((i + rowIndex) % 3) - 1) * 1.2
+        ring.size + (((i + ringIndex) % 3) - 1) * 1.1
 
       const rotation =
-        (((i * 11 + rowIndex * 7) % 18) - 9)
+        (((i * 13 + ringIndex * 7) % 18) - 9)
+
+      const stemLength =
+        145 + ringIndex * 6 + Math.max(0, y - centerY) * 1.4
 
       const stemLean =
-        (((i % 5) - 2) * 2.2)
+        Math.max(-10, Math.min(10, (x - centerX) * 0.32))
 
       flowers.push({
-        id: `${rowIndex}-${i}`,
-        x: xFinal,
-        y: yFinal,
+        id: `ring-${ringIndex}-${i}`,
+        x,
+        y,
         size,
         delay: order * FLOWER_INTERVAL,
         rotation,
-        rowIndex,
-        zIndex: 10 + rowIndex,
-        stemLength: row.stem,
+        stemLength,
         stemLean,
+        zIndex: 100 - ringIndex,
       })
 
       order += 1
@@ -128,7 +148,6 @@ function App() {
     event.preventDefault()
 
     const cleanName = inputName.trim()
-
     if (!cleanName) return
 
     setName(cleanName)
@@ -154,7 +173,6 @@ function App() {
 
     setIsClosing(false)
     setFadeOut(false)
-
     setLetterOpen(true)
     setEnvelopeOpened(false)
   }
@@ -163,7 +181,6 @@ function App() {
     event.stopPropagation()
 
     if (envelopeOpened || isClosing) return
-
     setEnvelopeOpened(true)
   }
 
@@ -189,7 +206,6 @@ function App() {
 
   const returnToBouquet = (event) => {
     event.stopPropagation()
-
     if (isClosing) return
 
     setLetterOpen(false)
@@ -310,7 +326,7 @@ function App() {
             <div className="creating-text">
               <span />
               <p>
-                Armando el ramo flor por flor...
+                Armando el ramo desde el centro...
               </p>
             </div>
           )}
@@ -318,9 +334,7 @@ function App() {
           {ready && (
             <div className="touch-message">
               <div className="touch-icon">☝🏻</div>
-
               <p>Toca la pantalla</p>
-
               <span>Hay algo más para ti</span>
             </div>
           )}

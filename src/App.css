@@ -5,8 +5,6 @@
   --yellow-2: #ffd83d;
   --yellow-3: #f6ae00;
   --yellow-4: #d47700;
-  --green-1: #5f8e40;
-  --green-2: #365b28;
 }
 
 * {
@@ -140,7 +138,7 @@ button {
 }
 
 /* =========================
-   INICIO
+   PANTALLA INICIAL
 ========================= */
 
 .welcome-screen {
@@ -183,6 +181,7 @@ button {
       translateY(30px)
       scale(0.97);
   }
+
   to {
     opacity: 1;
     transform:
@@ -348,6 +347,7 @@ button {
     opacity: 0;
     transform: translateY(-15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -363,7 +363,7 @@ button {
 }
 
 /* =========================
-   PAPEL DEL RAMO
+   PAPEL NEGRO
 ========================= */
 
 .paper {
@@ -378,8 +378,8 @@ button {
     linear-gradient(
       145deg,
       rgba(34, 34, 34, 0.92),
-      rgba(11, 11, 11, 0.95) 55%,
-      rgba(30, 30, 30, 0.92)
+      rgba(11, 11, 11, 0.96) 55%,
+      rgba(30, 30, 30, 0.93)
     );
   box-shadow:
     0 30px 60px rgba(0, 0, 0, 0.5);
@@ -434,6 +434,7 @@ button {
     opacity: 0;
     scale: 0.85;
   }
+
   to {
     opacity: 1;
     scale: 1;
@@ -444,26 +445,26 @@ button {
   position: absolute;
   z-index: 2;
   left: 50%;
-  top: 39%;
-  width: 67%;
-  height: 34%;
+  top: 40%;
+  width: 64%;
+  height: 30%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.55);
-  filter: blur(23px);
+  filter: blur(24px);
 }
 
 .stem-shadow {
   position: absolute;
   z-index: 2;
   left: 50%;
-  top: 59%;
+  top: 60%;
   width: 30%;
   height: 18%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.32);
-  filter: blur(26px);
+  background: rgba(0, 0, 0, 0.3);
+  filter: blur(28px);
 }
 
 .flowers {
@@ -473,7 +474,7 @@ button {
 }
 
 /* =========================
-   FLOR INDIVIDUAL
+   FLOR
 ========================= */
 
 .rose {
@@ -484,8 +485,8 @@ button {
   aspect-ratio: 1;
   opacity: 0;
   transform:
-    translate(-50%, -65%)
-    scale(0.2)
+    translate(-50%, -74%)
+    scale(0.18)
     rotate(var(--rotation));
   animation:
     placeFlower 0.85s
@@ -498,16 +499,16 @@ button {
   0% {
     opacity: 0;
     transform:
-      translate(-50%, -110%)
-      scale(0.2)
+      translate(-50%, -118%)
+      scale(0.18)
       rotate(var(--rotation));
   }
 
-  65% {
+  70% {
     opacity: 1;
     transform:
-      translate(-50%, -58%)
-      scale(1.06)
+      translate(-50%, -54%)
+      scale(1.05)
       rotate(var(--rotation));
   }
 
@@ -521,13 +522,13 @@ button {
 }
 
 /* =========================
-   TALLO Y HOJAS
+   TALLOS Y HOJAS
 ========================= */
 
 .stem-wrap {
   position: absolute;
   left: 50%;
-  top: 58%;
+  top: 60%;
   width: 16px;
   height: var(--stem-length);
   transform:
@@ -535,6 +536,7 @@ button {
     rotate(var(--stem-lean));
   transform-origin: top center;
   z-index: 1;
+  opacity: 0.95;
 }
 
 .stem {
@@ -548,26 +550,26 @@ button {
   background:
     linear-gradient(
       to bottom,
-      #84b14d 0%,
-      #5d8f39 30%,
-      #47702f 65%,
-      #2f4f22 100%
+      #85b54d 0%,
+      #5f9338 33%,
+      #46702d 67%,
+      #2e4a1f 100%
     );
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.06);
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .leaf {
   position: absolute;
-  width: 20px;
-  height: 12px;
+  width: 18px;
+  height: 11px;
   border-radius: 100% 0 100% 0;
   background:
     linear-gradient(
       145deg,
-      #7daf4b 0%,
-      #5e8f39 45%,
-      #41682a 100%
+      #80b14b 0%,
+      #5c8f38 50%,
+      #3d6428 100%
     );
   box-shadow:
     inset 1px 1px 2px rgba(255, 255, 255, 0.2);
@@ -586,14 +588,13 @@ button {
 }
 
 .leaf-left {
-  left: -6px;
-  top: 42%;
-  transform:
-    rotate(-38deg);
+  left: -5px;
+  top: 44%;
+  transform: rotate(-38deg);
 }
 
 .leaf-right {
-  right: -6px;
+  right: -5px;
   top: 63%;
   transform:
     scaleX(-1)
@@ -601,7 +602,7 @@ button {
 }
 
 /* =========================
-   CABEZA DE LA ROSA
+   CABEZA DE FLOR
 ========================= */
 
 .rose-head {
@@ -626,18 +627,17 @@ button {
   transform-origin: center;
 }
 
-/* pétalos externos */
 .outer {
-  width: 70%;
-  height: 84%;
+  width: 72%;
+  height: 86%;
   border-radius: 60% 40% 58% 42%;
   background:
     linear-gradient(
       155deg,
-      #ffe87b 0%,
-      #ffd33b 28%,
-      #f3af06 60%,
-      #cf7b00 100%
+      #ffe97a 0%,
+      #ffd43d 30%,
+      #f4af08 60%,
+      #cb7900 100%
     );
   box-shadow:
     inset 2px 2px 4px rgba(255, 255, 255, 0.32),
@@ -649,42 +649,46 @@ button {
     translate(-50%, -67%)
     rotate(0deg);
 }
+
 .outer-2 {
   transform:
-    translate(-23%, -56%)
+    translate(-24%, -56%)
     rotate(52deg);
 }
+
 .outer-3 {
   transform:
     translate(-12%, -31%)
     rotate(100deg);
 }
+
 .outer-4 {
   transform:
     translate(-34%, -8%)
     rotate(160deg);
 }
+
 .outer-5 {
   transform:
     translate(-77%, -16%)
     rotate(228deg);
 }
+
 .outer-6 {
   transform:
     translate(-86%, -48%)
     rotate(292deg);
 }
 
-/* pétalos medios */
 .mid {
-  width: 52%;
-  height: 62%;
+  width: 53%;
+  height: 63%;
   border-radius: 58% 42% 58% 42%;
   background:
     linear-gradient(
       150deg,
-      #ffe063 0%,
-      #ffc826 34%,
+      #ffe265 0%,
+      #ffc827 36%,
       #eb9f00 70%,
       #b56200 100%
     );
@@ -698,23 +702,25 @@ button {
     translate(-51%, -63%)
     rotate(18deg);
 }
+
 .mid-2 {
   transform:
     translate(-28%, -39%)
     rotate(94deg);
 }
+
 .mid-3 {
   transform:
     translate(-60%, -22%)
     rotate(168deg);
 }
+
 .mid-4 {
   transform:
     translate(-67%, -47%)
     rotate(250deg);
 }
 
-/* pétalos internos */
 .inner {
   width: 34%;
   height: 42%;
@@ -722,8 +728,8 @@ button {
   background:
     linear-gradient(
       145deg,
-      #ffd846,
-      #f1a100 65%,
+      #ffd947,
+      #f2a100 65%,
       #a65700
     );
 }
@@ -733,11 +739,13 @@ button {
     translate(-50%, -65%)
     rotate(18deg);
 }
+
 .inner-2 {
   transform:
     translate(-26%, -43%)
     rotate(128deg);
 }
+
 .inner-3 {
   transform:
     translate(-70%, -39%)
@@ -773,11 +781,10 @@ button {
   z-index: 12;
   left: 50%;
   bottom: 7%;
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
   opacity: 0;
   animation:
-    baseAppear 1s 5.6s ease forwards;
+    baseAppear 1s 5.7s ease forwards;
 }
 
 @keyframes baseAppear {
@@ -787,6 +794,7 @@ button {
       translateX(-50%)
       translateY(15px);
   }
+
   to {
     opacity: 1;
     transform:
@@ -821,8 +829,7 @@ button {
   top: 50%;
   width: 52px;
   height: 80%;
-  transform:
-    translateY(-50%);
+  transform: translateY(-50%);
   background: #be8e31;
   z-index: -1;
 }
@@ -906,6 +913,7 @@ button {
   from {
     transform: translateX(-110%);
   }
+
   to {
     transform: translateX(350%);
   }
@@ -933,6 +941,7 @@ button {
     opacity: 0;
     transform: translateY(15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -950,6 +959,7 @@ button {
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-7px);
   }
@@ -1024,6 +1034,7 @@ button {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1040,8 +1051,7 @@ button {
   top: 50%;
   width: min(650px, 95vw);
   aspect-ratio: 1;
-  transform:
-    translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background: rgba(255, 205, 90, 0.11);
   filter: blur(100px);
@@ -1129,6 +1139,7 @@ button {
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-6px);
   }
@@ -1446,6 +1457,7 @@ button {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1464,6 +1476,7 @@ button {
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-6px);
   }
@@ -1508,6 +1521,7 @@ button {
   100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.15);
   }
@@ -1535,7 +1549,7 @@ button {
   }
 
   .rose {
-    width: calc(var(--size) * 0.92);
+    width: calc(var(--size) * 0.9);
   }
 
   .stem-wrap {
@@ -1547,7 +1561,7 @@ button {
   }
 
   .leaf {
-    width: 17px;
+    width: 16px;
     height: 10px;
   }
 
@@ -1598,7 +1612,7 @@ button {
   }
 
   .rose {
-    width: calc(var(--size) * 0.85);
+    width: calc(var(--size) * 0.84);
   }
 
   .letter-title span {
@@ -1634,10 +1648,8 @@ button {
       auto
       minmax(0, 1fr)
       auto;
-    padding-top:
-      max(5px, env(safe-area-inset-top));
-    padding-bottom:
-      max(18px, env(safe-area-inset-bottom));
+    padding-top: max(5px, env(safe-area-inset-top));
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
   }
 
   .letter-title {
